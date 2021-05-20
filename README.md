@@ -5,9 +5,9 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
+* Ruby version 3.0.0p0 (2020-12-25 revision 95aff21468) [x86_64-linux]
 
-* Rails version 5.1.4
+* Rails version 6.1.3
 
 * Сущьности реального мира:
 Пользователи платформы
