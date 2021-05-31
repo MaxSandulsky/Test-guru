@@ -64,4 +64,11 @@ ActiveRecord::Schema.define(version: 20_210_528_134_925) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end
+
+  add_foreign_key 'answers', 'questions'
+  add_foreign_key 'passed_tests', 'tests'
+  add_foreign_key 'passed_tests', 'users'
+  add_foreign_key 'questions', 'tests'
+  add_foreign_key 'tests', 'categories'
+  add_foreign_key 'tests', 'users', column: 'author_id'
 end
