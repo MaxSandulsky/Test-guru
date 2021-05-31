@@ -1,22 +1,32 @@
-Category.create!([{ title: 'Backend' }, { title: 'Frontend' }, { title: 'Mobile Development' },
+categories = Category.create!([{ title: 'Backend' }, { title: 'Frontend' }, { title: 'Mobile Development' },
                   { title: 'Machine Learning' }])
-User.create!(login: 'OpenUser', password: 'doAos11-', e_mail: 'sample@mailer.com')
-Test.create!([{ category_id: 1, author_id: 1, title: 'Ruby for beginners' },
-              { category_id: 2, author_id: 1, title: 'HTML for the little ones' }])
-Question.create!([{ test_id: 1, body: 'In Ruby, everything is ...' },
-                  { test_id: 1, body: 'What function do you need to print output to the screen?' },
-                  { test_id: 1, body: 'What symbol do you need to commentate the line?' },
-                  { test_id: 1, body: 'How to define variable type in Ruby?' },
-                  { test_id: 1, body: 'How to define constant in Ruby?' }])
-Answer.create!([{ question_id: 1, body: 'function' }, { question_id: 1, body: 'number' },
-                { question_id: 1, body: 'object', correct: true }, { question_id: 2, body: 'window' },
-                { question_id: 2, body: 'outputs' }, { question_id: 2, body: 'puts', correct: true },
-                { question_id: 3, body: '@' }, { question_id: 3, body: '//' },
-                { question_id: 3, body: '#', correct: true },
-                { question_id: 4, body: 'Define type before variable' },
-                { question_id: 4, body: 'Simply write "var" before variable' },
-                { question_id: 4, body: 'Variable type will be determine automatically', correct: true },
-                { question_id: 5, body: 'Write "const" before constant' },
-                { question_id: 5, body: 'Write "static" before constant' },
-                { question_id: 5, body: 'Capitalize constants', correct: true }])
-PassedTest.create!([{ user_id: 1, test_id: 1 }, { user_id: 1, test_id: 2 }])
+
+users = User.create!([login: 'OpenUser', password: 'doAos11-', e_mail: 'sample@mailer.com'])
+
+tests = Test.create!([{ category_id: categories[0].id, author_id: users[0].id, title: 'Ruby for beginners' },
+              { category_id: categories[1].id, author_id: users[0].id, title: 'HTML for the little ones' }])
+
+questions = Question.create!([{ test_id: tests[0].id, body: 'In Ruby, everything is ...' },
+                  { test_id: tests[0].id, body: 'What function do you need to print output to the screen?' },
+                  { test_id: tests[0].id, body: 'What symbol do you need to commentate the line?' },
+                  { test_id: tests[0].id, body: 'How to define variable type in Ruby?' },
+                  { test_id: tests[0].id, body: 'How to define constant in Ruby?' }])
+
+answers = Answer.create!([{ question_id: questions[0].id, body: 'function' },
+                { question_id: questions[0].id, body: 'number' },
+                { question_id: questions[0].id, body: 'object', correct: true },
+                { question_id: questions[1].id, body: 'window' },
+                { question_id: questions[1].id, body: 'outputs' },
+                { question_id: questions[1].id, body: 'puts', correct: true },
+                { question_id: questions[2].id, body: '@' },
+                { question_id: questions[2].id, body: '//' },
+                { question_id: questions[2].id, body: '#', correct: true },
+                { question_id: questions[3].id, body: 'Define type before variable' },
+                { question_id: questions[3].id, body: 'Simply write "var" before variable' },
+                { question_id: questions[3].id, body: 'Variable type will be determine automatically', correct: true },
+                { question_id: questions[4].id, body: 'Write "const" before constant' },
+                { question_id: questions[4].id, body: 'Write "static" before constant' },
+                { question_id: questions[4].id, body: 'Capitalize constants', correct: true }])
+
+ptests = PassedTest.create!([{ user_id: users[0].id, test_id: tests[0].id },
+                   { user_id: users[0].id, test_id: tests[1].id }])
