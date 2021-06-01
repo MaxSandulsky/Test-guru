@@ -31,6 +31,6 @@ answers = Answer.create!([{ question_id: questions[0].id, body: 'function' },
                           { question_id: questions[4].id, body: 'Write "static" before constant' },
                           { question_id: questions[4].id, body: 'Capitalize constants', correct: true }])
 
-ptests = PassedTest.create!([{ user_id: users[0].id, test_id: tests[0].id },
+PassedTest.create!([{ user_id: users[0].id, test_id: tests[0].id },
                              { user_id: users[0].id, test_id: tests[1].id },
                              { user_id: users[0].id, test_id: tests[2].id }])
