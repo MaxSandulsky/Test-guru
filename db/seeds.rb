@@ -1,11 +1,12 @@
 categories = Category.create!([{ title: 'Backend' }, { title: 'Frontend' }, { title: 'Mobile Development' },
                                { title: 'Machine Learning' }])
 
-users = User.create!([login: 'OpenUser', password: 'doAos11-', e_mail: 'sample@mailer.com'])
+users = User.create!([{ login: 'OpenUser', password: 'doAos11-', e_mail: 'sample@mailer.com' },
+                      { login: 'Max', password: 'sample', e_mail: 'max@mailer.com' }])
 
 tests = Test.create!([{ category_id: categories[0].id, author_id: users[0].id, title: 'Ruby for beginners' },
                       { category_id: categories[1].id, author_id: users[0].id, title: 'HTML for the little ones' },
-                      { category_id: categories[0].id, author_id: users[0].id, title: 'Advanced Rails', level: 1 }])
+                      { category_id: categories[0].id, author_id: users[1].id, title: 'Advanced Rails', level: 1 }])
 
 questions = Question.create!([{ test_id: tests[0].id, body: 'In Ruby, everything is ...' },
                               { test_id: tests[0].id,
@@ -33,4 +34,5 @@ answers = Answer.create!([{ question_id: questions[0].id, body: 'function' },
 
 ptests = PassedTest.create!([{ user_id: users[0].id, test_id: tests[0].id },
                              { user_id: users[0].id, test_id: tests[1].id },
-                             { user_id: users[0].id, test_id: tests[2].id }])
+                             { user_id: users[0].id, test_id: tests[2].id },
+                             { user_id: users[1].id, test_id: tests[0].id }])
