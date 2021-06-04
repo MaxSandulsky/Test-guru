@@ -7,7 +7,6 @@ class Test < ApplicationRecord
   belongs_to :author, class_name: 'User'
 
   def self.titles(category)
-    Test.joins('JOIN categories ON categories.id = tests.category_id').where(categories: { title: category })
-        .order(title: :desc).pluck(:title)
+    Test.joins(:category).where(categories: { title: category }).pluck(:title)
   end
 end
