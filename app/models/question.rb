@@ -4,10 +4,5 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   validates :body, presence: true
-  validate :validate_count_answers, on: :use
-  # validates_associated :answers
-
-  def validate_count_answers
-    errors.add(:answers) unless answers.count.between?(1, 4)
-  end
+  validates :answers, presence: true, on: :use
 end
