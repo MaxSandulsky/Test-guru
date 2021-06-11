@@ -5,12 +5,14 @@ class TestsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :rescue_with_test_invalid
 
   def index
-    str = ''
+    str = []
     Test.joins(:category).each do |test|
-      str += "#{test.title} #{test.level} #{test.category.title}\n"
+      str.push("#{test.title} #{test.level} #{test.category.title}\n")
     end
     render plain: str
   end
+
+  def home_page; end
 
   def show(id = params[:id])
     redirect_to test_questions_path(id)
