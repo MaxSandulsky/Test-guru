@@ -1,5 +1,5 @@
 class TestsController < ApplicationController
-  before_action :test_by_id, only: %i[show destroy]
+  before_action :set_test, only: %i[show destroy]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :rescue_with_test_invalid
@@ -19,9 +19,12 @@ class TestsController < ApplicationController
   def new; end
 
   def create
-    @test = Test.create!(test_params)
-    # @test.category = Category.find_by!()
-    show
+    @test = Test.build(test_params)
+    if @test.save
+      redirect_to @test
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -32,13 +35,13 @@ class TestsController < ApplicationController
     redirect_to tests_path
   end
 
-  def test_by_id
-    @test = Test.find_by!(id: params[:id])
+  def set_test
+    @test = Test.find(params[:id])
   end
 
   def test_params
-    p = params.require(:test).permit(:title, :level, :category_id)
-    params.require(:category).permit(:category_id).merge(author_id: 1).merge(p)
+    hash = params.require(:test).permit(:title, :level, :category_id)
+    params.require(:category).permit(:category_id).merge(author_id: 1).merge(hash)
   end
 
   def rescue_with_test_not_found
