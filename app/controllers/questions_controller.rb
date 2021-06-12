@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :test_by_id, only: %i[index new create]
-  before_action :question_by_id, only: %i[show edit update destroy]
+  before_action :set_test, only: %i[index new create]
+  before_action :set_question, only: %i[show edit update destroy]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
@@ -15,9 +15,12 @@ class QuestionsController < ApplicationController
   def new; end
 
   def create
-    @question = @test.questions.create!(question_params)
-
-    redirect_to test_questions_url
+    @question = @test.questions.build(question_params)
+    if @question.save
+      redirect_to @question
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -25,15 +28,15 @@ class QuestionsController < ApplicationController
     @question.destroy
     logger.info('After destroy')
     flash[:notice] = 'Page destroyed successfully.'
-    redirect_to test_questions_url
+    redirect_to question_path(@question)
   end
 
-  def test_by_id
-    @test = Test.find_by!(id: params[:test_id])
+  def set_test
+    @test = Test.find(params[:test_id])
   end
 
-  def question_by_id
-    @question = Question.find_by!(id: params[:id])
+  def set_question
+    @question = Question.find(params[:id])
   end
 
   def question_params
