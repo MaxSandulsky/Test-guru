@@ -12,8 +12,8 @@ class TestsController < ApplicationController
     # render plain: str
   end
 
-  def show(id = params[:id])
-    redirect_to test_questions_path(id)
+  def show
+    redirect_to test_questions_path(@test)
   end
 
   def new; end
@@ -21,7 +21,7 @@ class TestsController < ApplicationController
   def create
     @test = Test.create!(test_params)
     # @test.category = Category.find_by!()
-    show(@test.id)
+    show
   end
 
   def destroy
