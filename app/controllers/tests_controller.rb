@@ -28,10 +28,8 @@ class TestsController < ApplicationController
   end
 
   def destroy
-    logger.info('Starting destroy')
     @test.destroy
-    logger.info('After destroy')
-    flash[:notice] = 'Page destroyed successfully.'
+
     redirect_to tests_path
   end
 
