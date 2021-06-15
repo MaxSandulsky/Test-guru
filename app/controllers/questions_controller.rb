@@ -24,10 +24,8 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    logger.info('Starting destroy')
     @question.destroy
-    logger.info('After destroy')
-    flash[:notice] = 'Page destroyed successfully.'
+
     redirect_to question_path(@question)
   end
 
