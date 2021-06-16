@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
 
-    redirect_to tests_path
+    redirect_to @test
   end
 
   def set_test
