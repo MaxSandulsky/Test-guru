@@ -1,4 +1,8 @@
 ru:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Ошибка заполнения данных"
   hello: "Привет, мир!"
   home:
     title: "Это домашняя страница"
