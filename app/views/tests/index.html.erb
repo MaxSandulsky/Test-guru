@@ -1,0 +1,18 @@
+<h1>Existing tests</h1>
+
+<p>
+  <%= link_to 'New test', new_test_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Level</th>
+    <th>Category</th>
+    <th>Action</th>
+  </tr>
+
+  <% Test.all.each do |test| %>
+    <%= render 'test', test: test %>
+  <% end %>
+</table>
