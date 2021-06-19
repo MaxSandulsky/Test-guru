@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_test, :set_question, only: %i[new create]
+  before_action :set_test, only: %i[new create]
   before_action :set_question, only: %i[show new edit update destroy]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_record_not_found

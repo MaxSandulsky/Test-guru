@@ -4,4 +4,8 @@ module TestsHelper
   def test_level(test)
     TEST_LEVELS[test.level] || 'Very hard'
   end
+
+  def questions_count(test)
+    test.questions.count
+  end
 end
