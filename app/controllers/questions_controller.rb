@@ -1,10 +1,10 @@
 class QuestionsController < ApplicationController
-  before_action :set_test, only: %i[new create]
-  before_action :set_question, only: %i[show new edit update destroy]
+  before_action :find_test, only: %i[new create]
+  before_action :find_question, only: %i[show edit update destroy]
+  #before_action :set_test, only: :edit
+  before_action :set_question, only: :new
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_record_not_found
-
-  def index; end
 
   def show; end
 
@@ -35,13 +35,21 @@ class QuestionsController < ApplicationController
     redirect_to edit_test_path(@question.test)
   end
 
+  private
+
   def set_test
+    @test = @question.test
+  end
+
+  def find_test
     @test = Test.find(params[:test_id])
   end
 
   def set_question
-    return @question = Question.new if params[:action] == 'new'
+    @question = @test.questions.new
+  end
 
+  def find_question
     @question = Question.find(params[:id])
   end
 

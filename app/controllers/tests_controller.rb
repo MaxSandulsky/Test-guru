@@ -11,7 +11,7 @@ class TestsController < ApplicationController
   def new; end
 
   def create
-    @test = Test.new(test_params)
+    @test = author.tests.build(test_params)
     if @test.save
       redirect_to @test
     else
@@ -35,6 +35,12 @@ class TestsController < ApplicationController
     redirect_to tests_path
   end
 
+  private
+  
+  def author
+    @author = User.last
+  end
+
   def set_test
     return @test = Test.new if params[:action] == 'new'
 
@@ -42,7 +48,7 @@ class TestsController < ApplicationController
   end
 
   def test_params
-    params.require(:test).permit(:title, :level, :category_id).merge(author_id: 1)
+    params.require(:test).permit(:title, :level, :category_id)
   end
 
   def rescue_with_test_not_found
