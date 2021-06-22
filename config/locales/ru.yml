@@ -1,6 +1,13 @@
 ru:
   activerecord:
     errors:
+      models:
+        test:
+          attributes:
+            title:
+              blank: "не может быть пустым"
+            level:
+              greater_than: "некорректное значение"
       messages:
         record_invalid: "Ошибка заполнения данных"
   hello: "Привет, мир!"
