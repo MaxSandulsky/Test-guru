@@ -36,7 +36,7 @@ class TestsController < ApplicationController
   end
 
   private
-  
+
   def author
     @author = User.last
   end

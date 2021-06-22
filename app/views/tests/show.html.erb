@@ -2,6 +2,6 @@
 
 <%= render 'shared/errors', resource: @test %>
 
-<%= render 'questions/index' %>
+<%= render @test.questions %>
 <br>
 <%= link_to 'Edit', edit_test_path(@test) %>
