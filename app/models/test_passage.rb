@@ -27,7 +27,9 @@ class TestPassage < ApplicationRecord
   end
 
   def correct_answer?(answer_ids)
-    correct_answers.ids.sort == answer_ids.map(&:to_i).sort # has an error when question has no answers or no answer was selected
+    return if answer_ids.nil?
+    
+    correct_answers.ids.sort == answer_ids.map(&:to_i).sort
   end
 
   def correct_answers
