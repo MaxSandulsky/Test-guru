@@ -39,9 +39,7 @@ class TestsController < ApplicationController
   def start
     return redirect_to tests_path if @test.invalid?(:use)
 
-    @user.tests_passed.push(@test) unless @user.uncomplete_test_passage(@test)
-
-    redirect_to @user.uncomplete_test_passage(@test)
+    redirect_to test_passage(@test)
   end
 
   private
@@ -66,6 +64,12 @@ class TestsController < ApplicationController
 
   def rescue_with_test_not_found
     redirect_to tests_path
+  end
+
+  def test_passage(test)
+    @test_passage = @user.uncomplete_test_passage(test)
+
+    @test_passage ||= @user.tests_passed.push(test).find(test.id).test_passages.by_uncomplete.find_by(user_id: @user.id)
   end
 
   def rescue_with_test_invalid(exemption)

@@ -6,6 +6,8 @@ class TestPassage < ApplicationRecord
   before_validation :before_validation_set_first_question, on: :create
   before_update :before_update_set_next_question
 
+  scope :by_uncomplete, -> { where.not(current_question: nil).order(id: :desc) }
+
   def completed?
     current_question.nil?
   end
@@ -14,6 +16,23 @@ class TestPassage < ApplicationRecord
     self.correct_questions += 1 if correct_answer?(answer_ids)
 
     save!
+  end
+
+  def test_passage_result
+    correct_questions * 100 / test.questions.count
+  end
+
+  def result_color
+    test_passage_result > 85 ? 'green' : 'red'
+  end
+
+  def result_text
+    test_passage_result > 85 ? 'Success' : 'Failure'
+  end
+
+  def completeness
+    question_ids = test.questions.pluck(:id)
+    "#{question_ids.index(current_question.id)}/#{question_ids.count}"
   end
 
   private
@@ -27,7 +46,7 @@ class TestPassage < ApplicationRecord
   end
 
   def correct_answer?(answer_ids)
-    (correct_answers.empty? ? (return true) : (return false)) if answer_ids.nil?
+    return false if answer_ids.nil?
 
     correct_answers.ids.sort == answer_ids.map(&:to_i).sort
   end

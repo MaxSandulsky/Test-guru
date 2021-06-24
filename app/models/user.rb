@@ -12,6 +12,6 @@ class User < ApplicationRecord
   end
 
   def uncomplete_test_passage(test)
-    test_passages.where.not(current_question: nil).order(id: :desc).find_by(test_id: test.id)
+    test_passages.by_uncomplete.find_by(test_id: test.id)
   end
 end
