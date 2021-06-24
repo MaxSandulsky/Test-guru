@@ -10,10 +10,10 @@
     <th>Level</th>
     <th>Category</th>
     <th>Questions</th>
-    <th>Action</th>
+    <th colspan="4">Actions</th>
   </tr>
 
   <% Test.all.each do |test| %>
-    <%= render 'test', test: test %>
+    <%= render test %>
   <% end %>
 </table>

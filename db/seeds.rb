@@ -31,7 +31,4 @@ Answer.create!([{ question: questions[0], body: 'function' },
                 { question: questions[4], body: 'Write "static" before constant' },
                 { question: questions[4], body: 'Capitalize constants', correct: true }])
 
-PassedTest.create!([{ user: users[0], test: tests[0] },
-                    { user: users[0], test: tests[1] },
-                    { user: users[0], test: tests[2] },
-                    { user: users[1], test: tests[0] }])
+TestPassage.create!(user: users[0], test: tests[0], current_question: questions[0])
