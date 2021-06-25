@@ -37,7 +37,7 @@ class TestsController < ApplicationController
   end
 
   def start
-    return redirect_to tests_path if @test.invalid?(:use)
+    return redirect_to tests_path if @test.questions.empty?
 
     redirect_to test_passage(@test)
   end

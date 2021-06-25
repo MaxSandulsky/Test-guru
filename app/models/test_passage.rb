@@ -1,4 +1,6 @@
 class TestPassage < ApplicationRecord
+  SUCCESS_RATIO = 85.freeze
+
   belongs_to :user
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
@@ -22,12 +24,8 @@ class TestPassage < ApplicationRecord
     correct_questions * 100 / test.questions.count
   end
 
-  def result_color
-    test_passage_result > 85 ? 'green' : 'red'
-  end
-
-  def result_text
-    test_passage_result > 85 ? 'Success' : 'Failure'
+  def result_success
+    test_passage_result > SUCCESS_RATIO
   end
 
   def completeness
