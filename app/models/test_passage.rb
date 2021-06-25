@@ -1,5 +1,5 @@
 class TestPassage < ApplicationRecord
-  SUCCESS_RATIO = 85.freeze
+  SUCCESS_RATIO = 85
 
   belongs_to :user
   belongs_to :test
