@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     unless current_user
       cookies[:target_path] = request.path_info
-byebug
+
       redirect_to login_path, alert: 'Verify Email or Password'
     end
   end
