@@ -1,5 +1,5 @@
 class TestsController < ApplicationController
-  
+
   before_action :authenticate_user!
   before_action :set_test, only: %i[show new edit update destroy start]
   before_action :set_user, only: %i[create start]
@@ -39,7 +39,7 @@ class TestsController < ApplicationController
   end
 
   def start
-    return redirect_to tests_path if @test.questions.empty?
+    redirect_to tests_path and return if @test.questions.empty?
 
     redirect_to test_passage(@test)
   end
