@@ -1,11 +1,14 @@
+require 'digest/sha1'
+
 class User < ApplicationRecord
   has_many :tests, inverse_of: 'author', foreign_key: 'author_id', dependent: :destroy
   has_many :test_passages, dependent: :destroy
   has_many :tests_passed, through: :test_passages, source: :test
 
-  validates :e_mail, presence: true
-  validates :login, presence: true
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true
+
+  has_secure_password
 
   def active_tests(level)
     tests_passed.by_level(level)

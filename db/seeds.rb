@@ -1,8 +1,8 @@
 categories = Category.create!([{ title: 'Backend' }, { title: 'Frontend' }, { title: 'Mobile Development' },
                                { title: 'Machine Learning' }])
 
-users = User.create!([{ login: 'OpenUser', password: 'doAos11-', e_mail: 'sample@mailer.com' },
-                      { login: 'Max', password: 'sample', e_mail: 'max@mailer.com' }])
+users = User.create!([{ password: 'doAos11-', email: 'sample@mailer.com' },
+                      { password: 'sample', email: 'max@mailer.com' }])
 
 tests = Test.create!([{ category: categories[0], author: users[0], title: 'Ruby for beginners' },
                       { category: categories[1], author: users[0], title: 'HTML for the little ones' },
@@ -41,10 +41,13 @@ Answer.create!([{ question: questions[0], body: 'function' },
                 { question: questions[6], body: 'No' },
                 { question: questions[6], body: 'Yes', correct: true },
                 { question: questions[6], body: 'Dependents on context' },
-                { question: questions[7], body: 'Pages written in HTML, CSS, JavaScript and is sending by server without any proccesing', correct: true },
+                { question: questions[7],
+                  body: 'Pages written in HTML, CSS, JavaScript and is sending by server without any proccesing', correct: true },
                 { question: questions[7], body: 'Static pages are no energy consuming' },
-                { question: questions[7], body: 'Static pages generate static electricity every time someone visit a page' },
-                { question: questions[8], body: 'Active Record is M in MVC - model - what is a layer in system, provides busines logic', correct: true },
+                { question: questions[7],
+                  body: 'Static pages generate static electricity every time someone visit a page' },
+                { question: questions[8],
+                  body: 'Active Record is M in MVC - model - what is a layer in system, provides busines logic', correct: true },
                 { question: questions[8], body: 'Records that can actively interract with other application parts' },
                 { question: questions[8], body: 'Opposite for passive records' },
                 { question: questions[9], body: 'Add resources', correct: true },
@@ -52,6 +55,6 @@ Answer.create!([{ question: questions[0], body: 'function' },
                 { question: questions[9], body: 'Define URL in settings' },
                 { question: questions[10], body: 'Model records fragments' },
                 { question: questions[10], body: 'View fragments', correct: true },
-                { question: questions[10], body: 'Fragments of HTML code' },
+                { question: questions[10], body: 'Fragments of HTML code', correct: true }])
 
 TestPassage.create!(user: users[0], test: tests[0], current_question: questions[0])
