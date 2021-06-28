@@ -37,17 +37,21 @@ class TestsController < ApplicationController
   end
 
   def start
-    redirect_to tests_path and return if @test.questions.empty?
-
-    redirect_to test_passage(@test)
+    if @test.questions.empty?
+      redirect_to tests_path
+    else
+      redirect_to test_passage(@test)
+    end
   end
 
   private
 
   def set_test
-    return @test = Test.new if params[:action] == 'new'
-
-    @test = Test.find(params[:id])
+    if params[:action] == 'new'
+      @test = Test.new
+    else
+      @test = Test.find(params[:id])
+    end
   end
 
   def set_user
