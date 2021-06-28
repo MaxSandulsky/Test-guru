@@ -1,6 +1,6 @@
 class TestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_test, only: %i[show new edit update destroy start]
-  before_action :set_user, only: :start
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :rescue_with_test_invalid
@@ -12,7 +12,7 @@ class TestsController < ApplicationController
   def new; end
 
   def create
-    @test = author.tests.build(test_params)
+    @test = @current_user.tests.build(test_params)
     if @test.save
       redirect_to @test
     else
@@ -37,25 +37,25 @@ class TestsController < ApplicationController
   end
 
   def start
-    return redirect_to tests_path if @test.questions.empty?
-
-    redirect_to test_passage(@test)
+    if @test.questions.empty?
+      redirect_to tests_path
+    else
+      redirect_to test_passage(@test)
+    end
   end
 
   private
 
-  def author
-    @author = User.last
-  end
-
   def set_test
-    return @test = Test.new if params[:action] == 'new'
-
-    @test = Test.find(params[:id])
+    if params[:action] == 'new'
+      @test = Test.new
+    else
+      @test = Test.find(params[:id])
+    end
   end
 
   def set_user
-    @user = User.first
+    @current_user = User.find(session[:user_id])
   end
 
   def test_params
@@ -67,9 +67,9 @@ class TestsController < ApplicationController
   end
 
   def test_passage(test)
-    @test_passage = @user.uncomplete_test_passage(test)
+    @test_passage = @current_user.uncomplete_test_passage(test)
 
-    @test_passage ||= @user.tests_passed.push(test).find(test.id).test_passages.by_uncomplete.find_by(user_id: @user.id)
+    @test_passage ||= @current_user.tests_passed.push(test).find(test.id).test_passages.by_uncomplete.find_by(user_id: @current_user.id)
   end
 
   def rescue_with_test_invalid(exemption)
