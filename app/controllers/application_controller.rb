@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       cookies[:target_path] = request.path_info
 
-      redirect_to login_path, alert: 'Verify Email or Password'
+      redirect_to sessions_new_path, alert: 'Verify Email or Password'
     end
   end
 

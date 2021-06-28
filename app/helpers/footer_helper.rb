@@ -3,7 +3,7 @@ module FooterHelper
     Date.current.year
   end
 
-  def blank_url(author, repo)
+  def github_url(author, repo)
     link_to author, repo, target: '_blank'
   end
 end

@@ -1,19 +1,21 @@
 module NavigationHelper
   def test_search; end
 
-  def nav_user
-    "Welcome, #{current_user.email} Guru" if logged_in?
+  def nav_registration
+    if logged_in?
+      "Welcome, #{current_user.email} Guru"
+    else
+      link_to "I'm not Guru, yet", new_user_path
+    end
   end
 
   def nav_logout
-    link_to 'Logout', logout_path if logged_in?
-  end
-
-  def nav_registration
-    link_to "I'm not Guru, yet", signup_path unless logged_in?
-  end
-
-  def nav_login
-    link_to "Login", login_path unless logged_in?
+    if logged_in?
+      link_to 'Logout', session_path(@current_user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }
+    else
+      link_to 'Login', sessions_new_path
+    end
   end
 end

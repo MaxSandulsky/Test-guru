@@ -14,9 +14,13 @@ class SessionsController < ApplicationController
     end
   end
 
-  def exit
-    session[:user_id] = nil
+  def destroy
+    reset_session
 
-    redirect_to login_path
+    redirect_to sessions_new_path
+  end
+
+  def reset_session
+    @_request.reset_session
   end
 end
