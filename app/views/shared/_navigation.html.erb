@@ -1,5 +1,8 @@
-<p class="nav title"><%= link_to 'TestGuru', tests_path %></p>
+<div class="nav nav-user">
+  <span class="nav-user title"><%= link_to 'TestGuru', tests_path %></span>
 
-<p class="nav logout"><%= nav_registration %></p>
-
-<p class="nav logout"><%= nav_logout %></p>
+  <div class="nav-user user">
+    <%= nav_registration %> Guru |
+    <%= nav_logout %>
+  </div>
+</div>

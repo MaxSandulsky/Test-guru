@@ -1,0 +1,9 @@
+<h1>Test <%= @test.title %></h1>
+
+<%= render 'shared/errors', resource: @test %>
+
+<ol>
+  <%= render partial: 'admin/questions/question', collection: @test.questions %>
+</ol><br>
+
+<%= link_to 'Edit', edit_admin_test_path(@test) %>

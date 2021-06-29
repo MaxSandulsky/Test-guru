@@ -1,5 +1,5 @@
 module FlashHelper
-  def flash_alert
-    content_tag :p, flash[:alert], class: 'flash alert' if flash[:alert]
+  def flash_contents(key, message)
+    content_tag :p, message, class: "flash #{key}"
   end
 end
