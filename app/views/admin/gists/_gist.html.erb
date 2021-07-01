@@ -1,0 +1,5 @@
+<tr>
+  <td><a href="<%= admin_question_path(gist.question) %>" target="_blank" maxlength="25"><%= gist.question.body %></a></td>
+  <td><%= link_to gist_hash(gist.url), gist.url %></td>
+  <td><%= gist.user.email %></td>
+</tr>

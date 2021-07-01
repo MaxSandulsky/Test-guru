@@ -10,12 +10,36 @@ ru:
               greater_than: "некорректное значение"
       messages:
         record_invalid: "Ошибка заполнения данных"
-  hello: "Привет, мир!"
-  home:
-    title: "Это домашняя страница"
-  about:
-    text: "Вместе с онлайн школой Thinknetica, мы собираемся разработать платформу для тестов и викторин, где можно будет проходить тесты, сохранять результаты и делиться ими с друзьями!"
-    Thinknetica_url: "www.thinknetica.com"
-    author: "Работает над проектом ученик онлайн школы: Сандульский Максим"
-    github: "github.com"
-    
+
+  shared:
+    errors:
+      header:
+        few: "%{count} ошибок обнаружено"
+        many: "%{count} ошибок обнаружено"
+        one: "Обнаружена ошибка"
+        other: "Обнаружено %{count} ошибоки"
+
+  tests:
+    index:
+      header: "Доступные тесты"
+
+  test_passages:
+    result:
+      header: "Вы прошли тест %{title}!"
+    gist:
+      success: "Gist успешно создан и доступен по ссылке:"
+      failure: "Возникли ошибки при создании gist"
+
+  admin:
+    tests:
+      create:
+        success: "Тест успешно создан"
+      index: "Доступные тесты"
+
+  tests_mailer:
+    completed_test:
+      subject: "Вы прошли тест на TestGuru!"
+
+  gist:
+    description: "Вопрос на TestGuru к тесту "
+    file_title: "test-guru-вопрос.txt"

@@ -1,0 +1,13 @@
+<h1>Gists</h1>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Gist URL</th>
+    <th>User</th>
+  </tr>
+
+  <% Gist.all.each do |gist| %>
+    <%= render gist %>
+  <% end %>
+</table>
