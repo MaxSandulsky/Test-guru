@@ -1,7 +1,5 @@
 module FlashHelper
-  def flash_contents
-    tags = html_escape('')
-    flash.each { |key, message| tags << (content_tag :p, message, class: "flash #{key}") }
-    tags
+  def flash_contents(type)
+    content_tag :p, flash[type], class: "flash #{type}" if flash[type]
   end
 end

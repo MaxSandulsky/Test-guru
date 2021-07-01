@@ -1,1 +1,3 @@
-<%= flash_contents %>
+<% flash.each do |f| %>
+  <%= flash_contents(f[0]) %>
+<% end %>
