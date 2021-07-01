@@ -1,24 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
-  helper_method :current_user,
-                :logged_in?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  private
-
-  def authenticate_user!
-    unless current_user
-      cookies[:target_path] = request.path_info
-
-      redirect_to sessions_new_path, alert: 'Verify Email or Password'
+  def after_sign_in_path_for(resource)
+    if resource.is_a?(Admin)
+      admin_tests_path
+    else
+      tests_path
     end
   end
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-  end
+  protected
 
-  def logged_in?
-    current_user.present?
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name email password])
   end
 end
