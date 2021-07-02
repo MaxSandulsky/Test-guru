@@ -9,7 +9,7 @@ class GistsController < Admin::BaseController
   def create
     result = GistQuestionService.new(@test_passage.current_question, current_user.github_token).call
 
-    flash_options = result.nil? ? { notice: t('.failure') } : save_record_gist(result)
+    flash_options = result.success ? save_record_gist(result) : { notice: t('.failure') }
 
     redirect_to @test_passage, flash_options
   end
@@ -17,9 +17,10 @@ class GistsController < Admin::BaseController
   private
 
   def save_record_gist(result)
-    @gist = Gist.new(user: current_user, url: result[:html_url], question: @test_passage.current_question)
+    @gist = Gist.new(user: current_user, url: result.response[:html_url], question: @test_passage.current_question)
+
     if @gist.save
-      { notice: "#{t('.success')} #{result[:html_url]}".html_safe }
+      { notice: "#{t('.success')} #{result.response[:html_url]}".html_safe }
     else
       { notice: t('.failure') }
     end
