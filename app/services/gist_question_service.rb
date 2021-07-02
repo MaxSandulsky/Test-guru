@@ -1,8 +1,10 @@
 class GistQuestionService
-  def initialize(question, github_token, client: nil)
+  GITHUB_TOKEN = Rails.application.credentials.github
+
+  def initialize(question, github_token)
     @question = question
     @test = @question.test
-    @client = client || Octokit::Client.new(access_token: github_token)
+    @client = Octokit::Client.new(access_token: GITHUB_TOKEN)
   end
 
   def call
@@ -24,8 +26,6 @@ class GistQuestionService
   end
 
   def gist_content
-    content = [@question.body]
-    content += @question.answers.pluck(:body)
-    content.join("\n")
+    [@question.body, *@question.answers.pluck(:body)].join("\n")
   end
 end

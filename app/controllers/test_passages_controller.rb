@@ -1,5 +1,4 @@
 class TestPassagesController < ApplicationController
-  GITHUB_TOKEN = Rails.application.credentials.github
 
   before_action :authenticate_user!
   before_action :set_test_passage, only: %i[show update result gist]
@@ -20,27 +19,9 @@ class TestPassagesController < ApplicationController
     end
   end
 
-  def gist
-    result = GistQuestionService.new(@test_passage.current_question, GITHUB_TOKEN).call
-
-    flash_options = if result.nil?
-                      { notice: t('.failure') }
-                    else
-                      create_gist(result)
-
-                      { notice: "#{t('.success')} #{result[:html_url]}".html_safe }
-                    end
-
-    redirect_to @test_passage, flash_options
-  end
-
   private
 
   def set_test_passage
     @test_passage = TestPassage.find(params[:id])
-  end
-
-  def create_gist(result)
-    @gist = Gist.create(user: current_user, url: result[:html_url], question: @test_passage.current_question)
   end
 end

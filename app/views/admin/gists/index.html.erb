@@ -7,7 +7,5 @@
     <th>User</th>
   </tr>
 
-  <% Gist.all.each do |gist| %>
-    <%= render gist %>
-  <% end %>
+  <%= render @gists %>
 </table>

@@ -1,6 +1,7 @@
 class TestsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_test, only: :start
+  before_action :set_tests, only: :index
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :rescue_with_test_invalid
@@ -15,6 +16,10 @@ class TestsController < ApplicationController
 
   def set_test
     @test = Test.find(params[:id])
+  end
+
+  def set_tests
+    @tests = Test.all
   end
 
   def rescue_with_test_not_found

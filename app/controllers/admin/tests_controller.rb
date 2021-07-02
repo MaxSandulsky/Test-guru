@@ -1,6 +1,6 @@
 class Admin::TestsController < Admin::BaseController
-  before_action :authenticate_user!
   before_action :set_test, only: %i[show new edit update destroy start]
+  before_action :set_tests, only: :index
 
   rescue_from ActiveRecord::RecordInvalid, with: :rescue_with_test_invalid
 
@@ -39,6 +39,10 @@ class Admin::TestsController < Admin::BaseController
 
   def set_test
     @test = Test.find_or_initialize_by(id: params[:id])
+  end
+
+  def set_tests
+    @tests = Test.all
   end
 
   def test_params

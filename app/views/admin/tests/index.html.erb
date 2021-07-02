@@ -13,9 +13,7 @@
     <th colspan="4">Actions</th>
   </tr>
 
-  <% Test.all.each do |test| %>
-    <%= render test %>
-  <% end %>
+  <%= render @tests %>
 </table>
 
 <%= link_to 'Gists', admin_gists_path %>
