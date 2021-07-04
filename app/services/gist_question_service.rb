@@ -1,16 +1,20 @@
 class GistQuestionService
-  GITHUB_TOKEN = Rails.application.credentials.github
-  ResultStruct = Struct.new(:success, :response)
+  GITHUB_TOKEN = Rails.application.credentials.github_token
+  ResultStruct = Struct.new(:status, :url) do
+    def success?
+      status == 201
+    end
+  end
 
-  def initialize(question, github_token)
+  def initialize(question)
     @question = question
     @test = @question.test
-    @client = Octokit::Client.new(access_token: github_token)
+    @client = Octokit::Client.new(access_token: GITHUB_TOKEN)
   end
 
   def call
-    ResultStruct.new(true, @client.create_gist(gist_params))
-  rescue Octokit::Unauthorized
+    result = @client.create_gist(gist_params)
+    ResultStruct.new(@client.last_response.status, result[:html_url])
   end
 
   private

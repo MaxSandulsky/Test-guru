@@ -1,13 +1,16 @@
 <h1>Existing tests</h1>
 
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Level</th>
-    <th>Category</th>
-    <th>Questions</th>
-    <th>Actions</th>
-  </tr>
-
-  <%= render @tests %>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Level</th>
+      <th>Category</th>
+      <th>Questions</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @tests %>
+  </tbody>
 </table>
