@@ -5,15 +5,18 @@
 </p>
 
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Level</th>
-    <th>Category</th>
-    <th>Questions</th>
-    <th colspan="4">Actions</th>
-  </tr>
-
-  <% Test.all.each do |test| %>
-    <%= render test %>
-  <% end %>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Level</th>
+      <th>Category</th>
+      <th>Questions</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @tests %>
+  </tbody>
 </table>
+
+<%= link_to 'Gists', gists_path %>

@@ -1,10 +1,45 @@
 en:
-  hello: "Hello world"
-  home:
-    title: "This is home page"
-  about:
-    text: "Together with Thinknetica we going to create cool platform for quiz and tests where you will be able to sign in, pass your favorite tests and then store or share results!"
-    Thinknetica_url: "www.thinknetica.com"
-    author: "Sanduldsky Maxim works on this project for online school"
-    github: "github.com"
-    
+  activerecord:
+    errors:
+      models:
+        test:
+          attributes:
+            title:
+              blank: "Can't be blank"
+            level:
+              greater_than: "Invalid value"
+      messages:
+        record_invalid: "Invalid data"
+
+  shared:
+    errors:
+      header:
+        few: "%{count} errors detected"
+        many: "%{count} errors detected"
+        one: "Error detected"
+        other: "%{count} errors detected"
+
+  tests:
+    index:
+      header: "Available tests"
+
+  test_passage:
+    result:
+      header: "Test %{title} successfuly completed!"
+    gist:
+      success: "Gist successfuly created and available at:"
+      failure: "Errors occurred while creating gist"
+
+  admin:
+    tests:
+      create:
+        success: "Test successfuly created"
+      index: "Available tests"
+
+  tests_mailer:
+    completed_test:
+      subject: "You successfuly pass the test on TestGuru!"
+
+  gist:
+    description: "TestGuru question from test "
+    file_title: "test-guru-question.txt"

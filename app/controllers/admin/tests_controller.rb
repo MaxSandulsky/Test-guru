@@ -1,10 +1,11 @@
 class Admin::TestsController < Admin::BaseController
-  before_action :authenticate_user!
   before_action :set_test, only: %i[show new edit update destroy start]
 
   rescue_from ActiveRecord::RecordInvalid, with: :rescue_with_test_invalid
 
-  def index; end
+  def index
+    @tests = Test.all
+  end
 
   def show; end
 
