@@ -2,8 +2,10 @@
 
 <%= render 'shared/errors', resource: @test %>
 
-<ol>
-  <%= render partial: 'admin/questions/question', collection: @test.questions %>
-</ol><br>
+<table>
+  <tbody>
+    <%= render @test.questions %>
+  </tbody>
+</table><br>
 
 <%= link_to 'Edit', edit_admin_test_path(@test) %>

@@ -19,9 +19,18 @@ ru:
         one: "Обнаружена ошибка"
         other: "Обнаружено %{count} ошибоки"
 
+  shared:
+    column_names:
+      title: "Название"
+      level: "Сложность"
+      category: "Категория"
+      questions: "Кол-во вопросов"
+      
   tests:
     index:
       header: "Доступные тесты"
+      new: "Создать тест"
+      actions: "Действия"
 
   test_passages:
     result:
@@ -36,7 +45,14 @@ ru:
     tests:
       create:
         success: "Тест успешно создан"
-      index: "Доступные тесты"
+      index:
+        header: "Доступные тесты"
+        new: "Создать тест"
+        actions: "Действия"
+        title: "Название"
+        level: "Сложность"
+        category: "Категория"
+        questions: "Кол-во вопросов"
     questions:
       question:
         edit: "Изменить"
