@@ -1,17 +1,17 @@
-<h1>Existing tests</h1>
+<h1><%= t('.header') %></h1>
 
 <p>
-  <%= link_to 'New test', new_admin_test_path %>
+  <%= link_to t('.new'), new_admin_test_path %>
 </p>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Level</th>
-      <th>Category</th>
-      <th>Questions</th>
-      <th colspan="4">Actions</th>
+      <%= render 'shared/column_names', locals: { col_name: t('.title') } %>
+      <%= render 'shared/column_names', locals: { col_name: t('.level') } %>
+      <%= render 'shared/column_names', locals: { col_name: t('.category') } %>
+      <%= render 'shared/column_names', locals: { col_name: t('.questions') } %>
+      <th colspan="4"><%= t('.actions') %></th>
     </tr>
   </thead>
   <tbody>
