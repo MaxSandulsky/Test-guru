@@ -30,6 +30,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bootstrap', '~> 5.0.1'
 gem 'octicons_helper'
 
+gem 'octicons_helper'
+
+gem 'bootstrap-sass'
+
 gem 'devise', '~> 4.0'
 
 gem 'octokit', '~> 4.0'
