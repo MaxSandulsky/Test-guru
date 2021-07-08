@@ -1,13 +1,12 @@
-<h1>Existing tests</h1>
+<h1><%= t('.header') %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Level</th>
-      <th>Category</th>
-      <th>Questions</th>
-      <th>Actions</th>
+      <%= render 'shared/column_names', locals: { col_name: t('.title') } %>
+      <%= render 'shared/column_names', locals: { col_name: t('.level') } %>
+      <%= render 'shared/column_names', locals: { col_name: t('.category') } %>
+      <%= render 'shared/column_names', locals: { col_name: t('.questions') } %>
     </tr>
   </thead>
   <tbody>

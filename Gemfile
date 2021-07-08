@@ -27,6 +27,8 @@ gem 'unicorn'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bootstrap', '~> 5.0.1'
+gem 'octicons_helper'
 
 gem 'octicons_helper'
 
