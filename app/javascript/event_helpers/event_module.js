@@ -5,24 +5,25 @@ export const enable_inputCompare_for = (element_class) => {
   const control = document.querySelectorAll(element_class)
 
   if (control) {
-    for (let i = 0; i < control.length; i++) {
-      control[i].addEventListener('input', () => {
+    control.forEach(element => {
+      element.addEventListener('input', () => {
         const comparing_field = new Comparator
         comparing_field.comparePasswords()
       })
-    }
+    })
   }
 }
+
 
 export const enable_tableSort_for = (element_class) => {
   const control = document.querySelectorAll(element_class)
 
   if (control) {
-    for (let i = 0; i < control.length; i++) {
-      control[i].addEventListener('click', () => {
-        const sortingTable = new Sorter(control[i])
+    control.forEach(element => {
+      element.addEventListener('click', () => {
+        const sortingTable = new Sorter(element)
         sortingTable.sortRowsbyColumn()
       })
-    }
+    })
   }
 }

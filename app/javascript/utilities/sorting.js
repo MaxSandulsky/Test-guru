@@ -7,67 +7,47 @@ export class Sorter {
   sortRowsbyColumn() {
     const table = document.querySelector('table')
 
-    const rows = table.querySelectorAll('tr')
-    let sortedRows = []
+    let sortedRows = Array.from(table.rows).slice(1)
 
-    for (let i = 1; i < rows.length; i++) {
-      sortedRows.push([rows[i].querySelectorAll('td')[this.column_index].textContent, rows[i]])
-    }
+    sortedRows.forEach((row, i) => {
+      sortedRows[i] = Array.from([row.querySelectorAll('td')[this.column_index].textContent, row])
+    })
 
     if (this.table_element.querySelector('.octicon-arrow-up').classList.contains('hide')) {
-      sortedRows.sort(this.compareRowsAsc)
+      sortedRows.sort((rowA, rowB) => rowA[0] > rowB[0] ? 1 : -1)
       this.table_element.querySelector('.octicon-arrow-up').classList.remove('hide')
       this.table_element.querySelector('.octicon-arrow-down').classList.add('hide')
     } else {
-      sortedRows.sort(this.compareRowsDesc)
+      sortedRows.sort((rowA, rowB) => rowB[0] > rowA[0] ? 1 : -1)
       this.table_element.querySelector('.octicon-arrow-down').classList.remove('hide')
       this.table_element.querySelector('.octicon-arrow-up').classList.add('hide')
     }
 
     let sortedTable = document.createElement('table')
-
     sortedTable.classList.add('table')
-    sortedTable.appendChild(rows[0])
+    sortedTable.appendChild(table.querySelector('tr'))
 
-    for (let i = 0; i < sortedRows.length; i++) {
-      sortedTable.appendChild(sortedRows[i][1])
-    }
+    sortedRows.forEach(row => {
+      sortedTable.appendChild(row[1])
+    })
 
     table.parentNode.replaceChild(sortedTable, table)
-  }
-
-  compareRowsAsc(row1, row2) {
-    const testTitle1 = row1[0]
-    const testTitle2 = row2[0]
-
-    if (testTitle1 < testTitle2) { return -1 }
-    if (testTitle1 > testTitle2) { return 1 }
-    return 0
-  }
-
-  compareRowsDesc(row1, row2) {
-    const testTitle1 = row1[0]
-    const testTitle2 = row2[0]
-
-    if (testTitle1 < testTitle2) { return 1 }
-    if (testTitle1 > testTitle2) { return -1 }
-    return 0
   }
 
   column_index(obj) {
     let heads = Array.from(obj.parentNode.childNodes)
     let column_index = 0
-    for (let i = 0; i < heads.length; i++) {
-      if (heads[i].textContent.trim() != '') {
-        heads[column_index] = heads[i].textContent.trim()
+
+    heads.forEach(td => {
+      if (td.textContent.trim() != '') {
+        heads[column_index] = td.textContent.trim()
         column_index++
       }
-    }
+    })
+
     heads = heads.slice(0, column_index)
 
-    for (let i = 0; i < heads.length; i++) {
-      if (heads[i] == obj.textContent.trim()) { column_index = i }
-    }
+    column_index = heads.indexOf(obj.textContent.trim())
 
     return column_index
   }
