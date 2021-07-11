@@ -1,5 +1,5 @@
 export class Comparator {
-  comparePasswords() {
+  static comparePasswords() {
 
     const password = document.getElementById('user_password')
     const confirmation = document.getElementById('user_password_confirmation')

@@ -28,9 +28,8 @@ class TestPassage < ApplicationRecord
     test_passage_result > SUCCESS_RATIO
   end
 
-  def completeness
-    question_ids = test.questions.pluck(:id)
-    "#{question_ids.index(current_question.id)}/#{question_ids.count}"
+  def current_question_index
+    test.questions.pluck(:id).index(current_question_id)
   end
 
   private
