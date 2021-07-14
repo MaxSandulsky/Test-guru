@@ -1,0 +1,27 @@
+.badge {
+  display: table-cell;
+  list-style-type: none;
+  color: black;
+  text-align: center;
+  padding: 15px;
+  width: 200px;
+  background-image: attr(data-background url);
+  background-size: cover;
+}
+
+.badge-text {
+  background-color: rgba(216, 215, 216, 0.5);
+}
+
+.badge-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.badge-conditions {
+  font-size: 14px;
+}
+
+.badge-row {
+  border-bottom: 1px solid black;
+}

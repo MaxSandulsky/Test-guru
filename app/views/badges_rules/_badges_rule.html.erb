@@ -1,0 +1,21 @@
+<th>
+  <ul class="badge">
+    <div class="badge" data-background="<%= badges_rule.pic_url %>">
+      <div class="badge-text">
+        <%= content_tag :li, badges_rule.title, class: "badge-title" %>
+        <% if badges_rule.level %>
+          <li class="badge-conditions"><%= t('.level') %>: <%= badges_rule.level %></li>
+        <% end %>
+        <% if badges_rule.category %>
+          <li class="badge-conditions"><%= t('.category') %>: <%= badges_rule.category.title %></li>
+        <% end %>
+        <% if badges_rule.attempts %>
+          <li class="badge-conditions"><%= t('.attempts') %>: <%= badges_rule.attempts %></li>
+        <% end %>
+        <% if badges_rule.test %>
+          <li class="badge-conditions"><%= t('.test') %>: <%= badges_rule.test.title %></li>
+        <% end %>
+      </div>
+    </div>
+  </ul>
+</th>

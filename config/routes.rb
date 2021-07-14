@@ -20,8 +20,11 @@ Rails.application.routes.draw do
   end
 
   resources :gists, only: %i[index create]
+  resources :badges, only: %i[index achieve show]
 
   namespace :admin do
+    resources :badges_rules, only: %i[index create new]
+
     resources :tests do
       patch :update_inline, on: :member
 
