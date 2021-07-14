@@ -1,0 +1,7 @@
+<ul class="menu hide">
+  <li class="menu-list nav-admin"><%= link_to t('.logout'), destroy_user_session_path, method: :delete %></li>
+  <li class="menu-list nav-admin"><%= link_to t('.new_test'), new_admin_test_path %></li>
+  <li class="menu-list nav-admin"><%= link_to t('.new_badge'), new_admin_badges_rule_path %></li>
+  <li class="menu-list nav-admin"><%= link_to t('.badges'), badges_path %></li>
+  <li class="menu-list nav-admin"><%= link_to t('.gists'), gists_path %></li>
+</ul>

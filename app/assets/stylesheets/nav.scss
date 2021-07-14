@@ -1,53 +1,42 @@
-.nav.user {
-  text-align: right;
+.title
+a:visited {
+  color: #ffffff
 }
 
-.nav.user-email {
-    border-bottom: 1px solid #3c85e0;
-}
-
-.nav.nav-admin {
+.nav {
   height: 35px;
   padding: 15px;
   line-height: 35px;
   color: #ffffff;
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+
+.nav-admin {
   background-color: #4293e6;
-  margin-bottom: 40px;
 }
 
-.nav.nav-admin
-a {
-  color: #ffffff
-}
-
-.nav-admin.title {
-  font-size: 140%;
-  font-weight: bold;
-}
-
-.nav-admin.user {
-  float: right;
-}
-
-.nav.nav-user {
-  height: 35px;
-  padding: 15px;
-  line-height: 35px;
-  color: #ffffff;
+.nav-user {
   background-color: #c71585;
-  margin-bottom: 40px;
 }
 
-.nav-user.title {
+.title {
+  text-align: left;
   font-size: 140%;
   font-weight: bold;
 }
 
-.nav-user.user {
-  float: right;
+.nav-user
+a:visited {
+  color: #ffffff;
 }
 
-.nav.nav-user
-a {
-  color: #ffffff
+.nav-admin
+a:visited {
+  color: #ffffff;
+}
+
+.user {
+  float: right;
+  text-align: right;
 }

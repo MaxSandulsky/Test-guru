@@ -37,10 +37,6 @@ class Admin::QuestionsController < Admin::BaseController
 
   private
 
-  def set_test
-    @test = @question.test
-  end
-
   def find_test
     @test = Test.find(params[:test_id])
   end

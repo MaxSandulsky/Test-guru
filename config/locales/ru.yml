@@ -1,4 +1,14 @@
 ru:
+  devise:
+    sessions:
+      user:
+        signed_in: "Добро пожаловать"
+    failure:
+      user:
+        unauthenticated: "Необходима аутентификация"
+        already_authenticated: "Вы уже аутентифицированы"
+        not_found_in_database: "Проверьте логин или пароль"
+
   activerecord:
     errors:
       models:
@@ -41,7 +51,22 @@ ru:
       success: "Gist успешно создан и доступен по ссылке:"
       failure: "Возникли ошибки при создании gist"
 
+  badges:
+    index:
+      header: "Ваши бэйджи"
+
+  badges_rules:
+    badges_rule:
+      level: "Уровни тестов"
+      category: "в категории"
+      attempts: "количество попыток"
+      test: "за прохождение теста"
+
   admin:
+    menu:
+      logout: "Выйти"
+      new_test: "Создать новый тест"
+      new_badge: "Создать новый бэйдж"
     tests:
       create:
         success: "Тест успешно создан"
@@ -88,6 +113,20 @@ ru:
         body: "Текст ответа"
         correct: "Правильный ответ"
         create: "Сохранить ответ"
+    badges_rules:
+      index:
+        header: "Возможные бэйджи"
+        new: "Создать новый бэйдж"
+      new:
+        header: "Создание нового бэйджа"
+        description: "Выберите одно или несколько условий получения бэйджа"
+      form:
+        title: "Бэйдж"
+        level: "Уровень тестов"
+        category: "Категория тестов"
+        test: "Тест"
+        attempts: "Максимальное количество попыток"
+        pic_url: "Ссылка на фоновое изображение"
 
   tests_mailer:
     completed_test:

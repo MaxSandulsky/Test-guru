@@ -1,7 +1,6 @@
 <h1>Passing the <%= @test_passage.test.title %> Test</h1>
 
 <p>
-  <%# Мне кажется, стоит вынести количество в константу, но где она должна быть? не во вью же %>
   <% 50.times do |i|%>
     <%= content_tag :span, '', class: "progress-bar tile-#{i}" %>
   <% end %>
