@@ -40,6 +40,6 @@ class BadgesRule < ApplicationRecord
   end
 
   def achievable
-    errors.add(:id) if required_tests.nil?
+    errors.add(:id) if required_tests.empty?
   end
 end

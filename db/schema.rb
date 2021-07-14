@@ -10,143 +10,142 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_14_031643) do
-
+ActiveRecord::Schema.define(version: 20_210_714_031_643) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "answers", force: :cascade do |t|
-    t.bigint "question_id", null: false
-    t.boolean "correct", default: false, null: false
-    t.string "body", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["question_id"], name: "index_answers_on_question_id"
+  create_table 'answers', force: :cascade do |t|
+    t.bigint 'question_id', null: false
+    t.boolean 'correct', default: false, null: false
+    t.string 'body', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['question_id'], name: 'index_answers_on_question_id'
   end
 
-  create_table "badges", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "badges_rule_id", null: false
-    t.string "title"
-    t.string "pic_url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["badges_rule_id"], name: "index_badges_on_badges_rule_id"
-    t.index ["user_id"], name: "index_badges_on_user_id"
+  create_table 'badges', force: :cascade do |t|
+    t.bigint 'user_id', null: false
+    t.bigint 'badges_rule_id', null: false
+    t.string 'title'
+    t.string 'pic_url'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['badges_rule_id'], name: 'index_badges_on_badges_rule_id'
+    t.index ['user_id'], name: 'index_badges_on_user_id'
   end
 
-  create_table "badges_rules", force: :cascade do |t|
-    t.bigint "test_id"
-    t.bigint "category_id"
-    t.integer "level"
-    t.integer "attempts"
-    t.string "pic_url"
-    t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_badges_rules_on_category_id"
-    t.index ["test_id"], name: "index_badges_rules_on_test_id"
+  create_table 'badges_rules', force: :cascade do |t|
+    t.bigint 'test_id'
+    t.bigint 'category_id'
+    t.integer 'level'
+    t.integer 'attempts'
+    t.string 'pic_url'
+    t.string 'title'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['category_id'], name: 'index_badges_rules_on_category_id'
+    t.index ['test_id'], name: 'index_badges_rules_on_test_id'
   end
 
-  create_table "badges_test_passages", force: :cascade do |t|
-    t.bigint "test_id"
-    t.bigint "user_id"
-    t.bigint "badges_rule_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["badges_rule_id"], name: "index_badges_test_passages_on_badges_rule_id"
-    t.index ["test_id"], name: "index_badges_test_passages_on_test_id"
-    t.index ["user_id"], name: "index_badges_test_passages_on_user_id"
+  create_table 'badges_test_passages', force: :cascade do |t|
+    t.bigint 'test_id'
+    t.bigint 'user_id'
+    t.bigint 'badges_rule_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['badges_rule_id'], name: 'index_badges_test_passages_on_badges_rule_id'
+    t.index ['test_id'], name: 'index_badges_test_passages_on_test_id'
+    t.index ['user_id'], name: 'index_badges_test_passages_on_user_id'
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "title", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'categories', force: :cascade do |t|
+    t.string 'title', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "gists", force: :cascade do |t|
-    t.bigint "question_id", null: false
-    t.bigint "user_id", null: false
-    t.string "url", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["question_id"], name: "index_gists_on_question_id"
-    t.index ["user_id"], name: "index_gists_on_user_id"
+  create_table 'gists', force: :cascade do |t|
+    t.bigint 'question_id', null: false
+    t.bigint 'user_id', null: false
+    t.string 'url', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['question_id'], name: 'index_gists_on_question_id'
+    t.index ['user_id'], name: 'index_gists_on_user_id'
   end
 
-  create_table "questions", force: :cascade do |t|
-    t.bigint "test_id", null: false
-    t.text "body", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["test_id"], name: "index_questions_on_test_id"
+  create_table 'questions', force: :cascade do |t|
+    t.bigint 'test_id', null: false
+    t.text 'body', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['test_id'], name: 'index_questions_on_test_id'
   end
 
-  create_table "test_passages", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "test_id", null: false
-    t.bigint "current_question_id"
-    t.integer "correct_questions", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["current_question_id"], name: "index_test_passages_on_current_question_id"
-    t.index ["test_id"], name: "index_test_passages_on_test_id"
-    t.index ["user_id"], name: "index_test_passages_on_user_id"
+  create_table 'test_passages', force: :cascade do |t|
+    t.bigint 'user_id', null: false
+    t.bigint 'test_id', null: false
+    t.bigint 'current_question_id'
+    t.integer 'correct_questions', default: 0
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['current_question_id'], name: 'index_test_passages_on_current_question_id'
+    t.index ['test_id'], name: 'index_test_passages_on_test_id'
+    t.index ['user_id'], name: 'index_test_passages_on_user_id'
   end
 
-  create_table "tests", force: :cascade do |t|
-    t.bigint "category_id", null: false
-    t.bigint "author_id", null: false
-    t.integer "level", default: 1, null: false
-    t.string "title", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_id"], name: "index_tests_on_author_id"
-    t.index ["category_id"], name: "index_tests_on_category_id"
+  create_table 'tests', force: :cascade do |t|
+    t.bigint 'category_id', null: false
+    t.bigint 'author_id', null: false
+    t.integer 'level', default: 1, null: false
+    t.string 'title', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['author_id'], name: 'index_tests_on_author_id'
+    t.index ['category_id'], name: 'index_tests_on_category_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.string "type", default: "User", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "github_token"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["type"], name: "index_users_on_type"
+  create_table 'users', force: :cascade do |t|
+    t.string 'email', default: '', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.integer 'sign_in_count', default: 0, null: false
+    t.datetime 'current_sign_in_at'
+    t.datetime 'last_sign_in_at'
+    t.string 'current_sign_in_ip'
+    t.string 'last_sign_in_ip'
+    t.string 'confirmation_token'
+    t.datetime 'confirmed_at'
+    t.datetime 'confirmation_sent_at'
+    t.string 'unconfirmed_email'
+    t.string 'type', default: 'User', null: false
+    t.string 'first_name'
+    t.string 'last_name'
+    t.string 'github_token'
+    t.index ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+    t.index ['type'], name: 'index_users_on_type'
   end
 
-  add_foreign_key "answers", "questions"
-  add_foreign_key "badges", "badges_rules"
-  add_foreign_key "badges", "users"
-  add_foreign_key "badges_rules", "categories"
-  add_foreign_key "badges_rules", "tests"
-  add_foreign_key "badges_test_passages", "badges_rules"
-  add_foreign_key "badges_test_passages", "tests"
-  add_foreign_key "badges_test_passages", "users"
-  add_foreign_key "gists", "questions"
-  add_foreign_key "gists", "users"
-  add_foreign_key "questions", "tests"
-  add_foreign_key "test_passages", "questions", column: "current_question_id"
-  add_foreign_key "test_passages", "tests"
-  add_foreign_key "test_passages", "users"
-  add_foreign_key "tests", "categories"
-  add_foreign_key "tests", "users", column: "author_id"
+  add_foreign_key 'answers', 'questions'
+  add_foreign_key 'badges', 'badges_rules'
+  add_foreign_key 'badges', 'users'
+  add_foreign_key 'badges_rules', 'categories'
+  add_foreign_key 'badges_rules', 'tests'
+  add_foreign_key 'badges_test_passages', 'badges_rules'
+  add_foreign_key 'badges_test_passages', 'tests'
+  add_foreign_key 'badges_test_passages', 'users'
+  add_foreign_key 'gists', 'questions'
+  add_foreign_key 'gists', 'users'
+  add_foreign_key 'questions', 'tests'
+  add_foreign_key 'test_passages', 'questions', column: 'current_question_id'
+  add_foreign_key 'test_passages', 'tests'
+  add_foreign_key 'test_passages', 'users'
+  add_foreign_key 'tests', 'categories'
+  add_foreign_key 'tests', 'users', column: 'author_id'
 end
