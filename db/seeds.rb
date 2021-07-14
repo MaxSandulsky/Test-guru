@@ -6,7 +6,7 @@ users = User.create!([{ password: 'doAos11-', email: 'sample@mailer.com' },
 
 tests = Test.create!([{ category: categories[0], author: users[0], title: 'Ruby for beginners' },
                       { category: categories[1], author: users[0], title: 'HTML for the little ones' },
-                      { category: categories[0], author: users[1], title: 'Advanced Rails', level: 1 }])
+                      { category: categories[0], author: users[1], title: 'Advanced Rails', level: 2 }])
 
 questions = Question.create!([{ test: tests[0], body: 'In Ruby, everything is ...' },
                               { test: tests[0], body: 'What function do you need to print output to the screen?' },
@@ -58,3 +58,16 @@ Answer.create!([{ question: questions[0], body: 'function' },
                 { question: questions[10], body: 'Fragments of HTML code', correct: true }])
 
 TestPassage.create!(user: users[0], test: tests[0], current_question: questions[0])
+
+badges_rules = BadgesRule.create!([{test: tests[0],
+                                    title: 'Junior',
+                                    pic_url: 'https://starwarsblog.starwars.com/wp-content/uploads/2012/08/Padawans-1088x816-570401936629.jpg'},
+                                   {title: 'Wise Guru',
+                                    attempts: 1,
+                                    level: 2,
+                                    pic_url: 'https://ichef.bbci.co.uk/news/1024/media/images/80449000/jpg/_80449240_wirathu.jpg'}])
+
+Badge.create!(user: users[0],
+              title: 'Junior',
+              badges_rule: badges_rules[0],
+              pic_url: 'https://starwarsblog.starwars.com/wp-content/uploads/2012/08/Padawans-1088x816-570401936629.jpg')

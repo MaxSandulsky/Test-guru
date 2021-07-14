@@ -9,6 +9,11 @@ class BadgesRule < ApplicationRecord
 
   validates :title, :pic_url, presence: true
   validate :at_least_one_criterion
+  validate :achievable
+
+  def attempts_by(user)
+    badges_test_passages.where(user: user)
+  end
 
   def tests_completed_by(user)
     Test.where(id: badges_test_passages.where(user: user).select(:test_id))
@@ -16,7 +21,7 @@ class BadgesRule < ApplicationRecord
 
   def required_tests
     tests = []
-    active_rules.each do |attr, value|
+    active_rules.except('attempts').each do |attr, value|
       tests.push(Test.where(attr => value))
     end
     tests.flatten
@@ -32,5 +37,9 @@ class BadgesRule < ApplicationRecord
 
   def at_least_one_criterion
     errors.add(:id) if attributes.except(*WHITELIST).all? { |_attr, value| value.nil? }
+  end
+
+  def achievable
+    errors.add(:id) if required_tests.nil?
   end
 end
