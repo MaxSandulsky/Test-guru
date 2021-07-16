@@ -4,10 +4,16 @@ export class Expandable {
   }
 
   hide() {
-    document.querySelector(this.element_class).classList.add('hide')
+    const element = document.querySelector(this.element_class)
+    if (element) {
+      element.classList.add('hide')
+    }
   }
 
   reveal() {
-    document.querySelector(this.element_class).classList.remove('hide')
+    const element = document.querySelector(this.element_class)
+    if (element) {
+      element.classList.remove('hide')
+    }
   }
 }
