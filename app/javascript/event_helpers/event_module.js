@@ -38,21 +38,21 @@ export const enable_tableSort_for = (element_class) => {
 export const enable_formInline_for = (element_class) => {
   const inLineEditable = document.querySelectorAll(element_class)
 
-  if (inLineEditable) {
-    inLineEditable.forEach(element => {
+  inLineEditable.forEach(element => {
+    if (element != undefined) {
       element.addEventListener('click', (event) => {
         event.preventDefault()
 
         InlineEditor.formInlineLinkHandler(event.target.dataset.testId)
       })
-    })
-  }
 
-  const errors = document.querySelector('.resource-errors')
+      const errors = document.querySelector('.resource-errors')
 
-  if (errors) {
-    InlineEditor.formInlineLinkHandler(errors.dataset.resourceId)
-  }
+      if (errors) {
+        InlineEditor.formInlineLinkHandler(errors.dataset.resourceId)
+      }
+    }
+  })
 }
 
 export const enable_progressBar_for = (element_class) => {

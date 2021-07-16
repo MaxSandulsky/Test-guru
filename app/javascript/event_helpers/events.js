@@ -14,5 +14,5 @@ document.addEventListener('turbolinks:load', () => {
   enable_progressBar_for('.progress-bar')
   enable_retractable_for('.user', '.menu')
   enable_images_for('.badge')
-  enable_timeLimit_for('.test-passage')
+  enable_timeLimit_for('.timer')
 })
