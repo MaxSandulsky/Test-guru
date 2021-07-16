@@ -1,7 +1,8 @@
 export class Timer {
-  constructor(time_limit, time_now, time_start) {
-    this.end_time = parseInt(time_start, 10) + parseInt(time_limit, 10)
-    this.time_now = parseInt(time_now, 10)
+  constructor(element) {
+    this.element = element
+    this.end_time = parseInt(element.dataset.timeStart, 10) + parseInt(element.dataset.timeLimit, 10)
+    this.time_now = parseInt(element.dataset.timeNow, 10)
     this.time_left = this.end_time - this.time_now
   }
 
@@ -15,26 +16,20 @@ export class Timer {
   }
 
   clock_tick() {
-    const clock = document.querySelector('.time-left')
+    this.time_left = this.time_left - 1000
+    const time = [Math.floor(this.time_left / 3600000),
+                  Math.floor(this.time_left / 60000),
+                  Math.floor(this.time_left / 1000)]
+    time.forEach((item, i) => {
+      if (item < 10) {
+        time[i] = "0" + item
+      }
+    })
 
-    if (clock) {
-      this.time_left = this.time_left - 1000
-      const time = [Math.floor(this.time_left / 3600000),
-                    Math.floor(this.time_left / 60000),
-                    Math.floor(this.time_left / 1000)]
-      time.forEach((item, i) => {
-        if (item < 10) {
-          time[i] = "0" + item
-        }
-      })
-
-      clock.textContent = time[0] + ":" + time[1] + ":" + time[2]
-    }
+    this.element.textContent = time[0] + ":" + time[1] + ":" + time[2]
   }
 
   expire_by_end_of_time() {
-    if (location.href.search('test_passage')) {
-      location.replace(location.href + '/interrupt')
-    }
+    document.querySelector('.test-passage').submit()
   }
 }

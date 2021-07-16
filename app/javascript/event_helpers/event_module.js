@@ -72,8 +72,6 @@ export const enable_progressBar_for = (element_class) => {
     })
   }
 }
-<<<<<<< Updated upstream
-=======
 
 export const enable_retractable_for = (activator_class, element_class) => {
   const retractable = document.querySelectorAll(activator_class)
@@ -105,4 +103,3 @@ export const enable_timeLimit_for = (element_class) => {
     timer.set_timer()
   }
 }
->>>>>>> Stashed changes
