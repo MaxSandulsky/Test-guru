@@ -13,7 +13,8 @@ class BadgesController < ApplicationController
         badges_test_passage.save!
       end
 
-      next unless rule.required_tests == rule.tests_completed_by(test_passage.user) && check_user_attempts(rule, test_passage)
+      next unless rule.required_tests == rule.tests_completed_by(test_passage.user) && check_user_attempts(rule,
+                                                                                                           test_passage)
 
       rule.attempts_by(test_passage.user).destroy_all
       badge = rule.badges.build(pic_url: rule.pic_url, title: rule.title, user: test_passage.user)

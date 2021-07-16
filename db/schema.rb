@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_714_031_643) do
+ActiveRecord::Schema.define(version: 20_210_713_129_217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -23,19 +23,9 @@ ActiveRecord::Schema.define(version: 20_210_714_031_643) do
     t.index ['question_id'], name: 'index_answers_on_question_id'
   end
 
-  create_table 'badges', force: :cascade do |t|
-    t.bigint 'user_id', null: false
-    t.bigint 'badges_rule_id', null: false
-    t.string 'title'
-    t.string 'pic_url'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['badges_rule_id'], name: 'index_badges_on_badges_rule_id'
-    t.index ['user_id'], name: 'index_badges_on_user_id'
-  end
-
   create_table 'badges_rules', force: :cascade do |t|
     t.bigint 'test_id'
+    t.bigint 'user_id'
     t.bigint 'category_id'
     t.integer 'level'
     t.integer 'attempts'
@@ -45,17 +35,7 @@ ActiveRecord::Schema.define(version: 20_210_714_031_643) do
     t.datetime 'updated_at', precision: 6, null: false
     t.index ['category_id'], name: 'index_badges_rules_on_category_id'
     t.index ['test_id'], name: 'index_badges_rules_on_test_id'
-  end
-
-  create_table 'badges_test_passages', force: :cascade do |t|
-    t.bigint 'test_id'
-    t.bigint 'user_id'
-    t.bigint 'badges_rule_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['badges_rule_id'], name: 'index_badges_test_passages_on_badges_rule_id'
-    t.index ['test_id'], name: 'index_badges_test_passages_on_test_id'
-    t.index ['user_id'], name: 'index_badges_test_passages_on_user_id'
+    t.index ['user_id'], name: 'index_badges_rules_on_user_id'
   end
 
   create_table 'categories', force: :cascade do |t|
@@ -133,13 +113,9 @@ ActiveRecord::Schema.define(version: 20_210_714_031_643) do
   end
 
   add_foreign_key 'answers', 'questions'
-  add_foreign_key 'badges', 'badges_rules'
-  add_foreign_key 'badges', 'users'
   add_foreign_key 'badges_rules', 'categories'
   add_foreign_key 'badges_rules', 'tests'
-  add_foreign_key 'badges_test_passages', 'badges_rules'
-  add_foreign_key 'badges_test_passages', 'tests'
-  add_foreign_key 'badges_test_passages', 'users'
+  add_foreign_key 'badges_rules', 'users'
   add_foreign_key 'gists', 'questions'
   add_foreign_key 'gists', 'users'
   add_foreign_key 'questions', 'tests'
