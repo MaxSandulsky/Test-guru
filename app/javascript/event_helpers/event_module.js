@@ -2,6 +2,9 @@ import {Sorter} from "utilities/sorting"
 import {Comparator} from "utilities/password_match"
 import {InlineEditor} from "utilities/form_inline"
 import {TileHandler} from "utilities/progress_bar"
+import {Expandable} from "utilities/menu"
+import {Badge} from "background_helpers/badge"
+import {Timer} from "utilities/timer"
 
 export const enable_inputCompare_for = (element_class) => {
   const comparable = document.querySelectorAll(element_class)
@@ -20,8 +23,12 @@ export const enable_tableSort_for = (element_class) => {
 
   if (sortable) {
     sortable.forEach(element => {
-      element.addEventListener('click', () => {
-        const sortingTable = new Sorter(event.target)
+      element.addEventListener('click', (event) => {
+        let target_element = event.target
+        if (target_element.nodeName != 'TH') {
+          target_element = target_element.parentNode
+        }
+        const sortingTable = new Sorter(target_element)
         sortingTable.sortRowsbyColumn()
       })
     })
@@ -65,3 +72,37 @@ export const enable_progressBar_for = (element_class) => {
     })
   }
 }
+<<<<<<< Updated upstream
+=======
+
+export const enable_retractable_for = (activator_class, element_class) => {
+  const retractable = document.querySelectorAll(activator_class)
+
+  if (retractable) {
+    retractable.forEach(activator => {
+      const expandable = new Expandable(element_class)
+
+      activator.addEventListener('mouseover', () => {
+        expandable.reveal()
+      })
+
+      activator.addEventListener('mouseout', () => {
+        expandable.hide()
+      })
+    })
+  }
+}
+
+export const enable_images_for = (element_class) => {
+  Badge.set_background_images(document.querySelectorAll(element_class))
+}
+
+export const enable_timeLimit_for = (element_class) => {
+  const timeLimited = document.querySelector(element_class)
+
+  if (timeLimited) {
+    const timer = new Timer(timeLimited)
+    timer.set_timer()
+  }
+}
+>>>>>>> Stashed changes

@@ -1,4 +1,4 @@
-<h1>Passing the <%= @test_passage.test.title %> Test</h1>
+<h1><%= "#{t('.header')} #{@test_passage.test.title}" %></h1>
 
 <p>
   <% 50.times do |i|%>
@@ -7,11 +7,20 @@
 </p>
 
 <p>
+  <%= content_tag :span, t('.time_left') %>
+  <%= content_tag :span, '0:00:00', class: "time-left" %>
+</p>
+
+<p>
   <b><%= @test_passage.current_question.body %></b>
 </p>
 
 <%= form_with url: test_passage_path(@test_passage),
               local: true,
+              class: "test-passage",
+              data: { time_limit: min_to_ms(@test_passage.test.timer),
+                      time_now: sec_to_ms(Time.now.to_i),
+                      time_start: sec_to_ms(@test_passage.created_at.to_i)},
               method: :put do |form| %>
 
   <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers,
