@@ -33,6 +33,8 @@ ru:
       actions: "Действия"
 
   test_passages:
+    show:
+      header: "Вы проходите тест"
     result:
       header: "Вы прошли тест %{title}!"
 
@@ -40,6 +42,11 @@ ru:
     create:
       success: "Gist успешно создан и доступен по ссылке:"
       failure: "Возникли ошибки при создании gist"
+
+  badges:
+    index:
+      available: "Доступные для получения"
+      header: "Ваши бэйджи"
 
   admin:
     tests:
@@ -88,6 +95,27 @@ ru:
         body: "Текст ответа"
         correct: "Правильный ответ"
         create: "Сохранить ответ"
+
+    badges:
+      index:
+        header: "Ваши бэйджи"
+        new: "Создать новый бэйдж"
+        available: "Доступные для получения"
+      new:
+        header: "Создание нового бэйджа"
+        description: "Выберите одно или несколько условий получения бэйджа"
+      form:
+        title: "Бэйдж"
+        level: "Уровень тестов"
+        category: "Категория тестов"
+        test: "Тест"
+        attempts: "Максимальное количество попыток"
+        pic_url: "Ссылка на фоновое изображение"
+      badge:
+        level: "Уровни тестов"
+        category: "в категории"
+        attempts: "количество попыток"
+        test: "за прохождение теста"
 
   tests_mailer:
     completed_test:
