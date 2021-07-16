@@ -19,4 +19,12 @@ class User < ApplicationRecord
   def uncomplete_test_passage(test)
     test_passages.by_uncomplete.find_or_create_by(test_id: test.id)
   end
+
+  def achieved_badges
+    badges.where(achieved: true)
+  end
+
+  def unachieved_badges
+    badges.where(achieved: false)
+  end
 end

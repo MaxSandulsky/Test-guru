@@ -1,5 +1,5 @@
 class Badge < ApplicationRecord
-  WHITELIST = %w[id title pic_url created_at updated_at].freeze
+  WHITELIST = %w[id title pic_url created_at updated_at user_id achieved].freeze
 
   belongs_to :user
   belongs_to :category, optional: true
@@ -9,10 +9,13 @@ class Badge < ApplicationRecord
   validate :at_least_one_criterion
   validate :achievable
 
+  def completed_by(user)
+    attempts_by(user).map { |test_passage| test_passage.test }
+  end
+
   def attempts_by(user)
-    required_tests.each do |test|
-      test.test_passages.where(user: user)
-    end
+    required_tests.map { |test| test.test_passages.where(user: user) }
+                  .flatten
   end
 
   def required_tests

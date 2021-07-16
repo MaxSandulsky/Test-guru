@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20_210_713_129_217) do
     t.index ['question_id'], name: 'index_answers_on_question_id'
   end
 
-  create_table 'badges_rules', force: :cascade do |t|
+  create_table 'badges', force: :cascade do |t|
     t.bigint 'test_id'
     t.bigint 'user_id'
     t.bigint 'category_id'
@@ -31,11 +31,12 @@ ActiveRecord::Schema.define(version: 20_210_713_129_217) do
     t.integer 'attempts'
     t.string 'pic_url'
     t.string 'title'
+    t.boolean 'achieved', default: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.index ['category_id'], name: 'index_badges_rules_on_category_id'
-    t.index ['test_id'], name: 'index_badges_rules_on_test_id'
-    t.index ['user_id'], name: 'index_badges_rules_on_user_id'
+    t.index ['category_id'], name: 'index_badges_on_category_id'
+    t.index ['test_id'], name: 'index_badges_on_test_id'
+    t.index ['user_id'], name: 'index_badges_on_user_id'
   end
 
   create_table 'categories', force: :cascade do |t|
@@ -113,9 +114,9 @@ ActiveRecord::Schema.define(version: 20_210_713_129_217) do
   end
 
   add_foreign_key 'answers', 'questions'
-  add_foreign_key 'badges_rules', 'categories'
-  add_foreign_key 'badges_rules', 'tests'
-  add_foreign_key 'badges_rules', 'users'
+  add_foreign_key 'badges', 'categories'
+  add_foreign_key 'badges', 'tests'
+  add_foreign_key 'badges', 'users'
   add_foreign_key 'gists', 'questions'
   add_foreign_key 'gists', 'users'
   add_foreign_key 'questions', 'tests'
