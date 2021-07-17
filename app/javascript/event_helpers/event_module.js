@@ -2,7 +2,7 @@ import {Sorter} from "utilities/sorting"
 import {Comparator} from "utilities/password_match"
 import {InlineEditor} from "utilities/form_inline"
 import {TileHandler} from "utilities/progress_bar"
-import {Expandable} from "utilities/menu"
+import {Expandable} from "utilities/expandable"
 import {Badge} from "background_helpers/badge"
 
 export const enable_inputCompare_for = (element_class) => {
@@ -70,10 +70,11 @@ export const enable_progressBar_for = (element_class) => {
 
 export const enable_retractable_for = (activator_class, element_class) => {
   const retractable = document.querySelectorAll(activator_class)
+  const element = document.querySelector(element_class)
 
   if (retractable) {
     retractable.forEach(activator => {
-      const expandable = new Expandable(element_class)
+      const expandable = new Expandable(element)
 
       activator.addEventListener('mouseover', () => {
         expandable.reveal()

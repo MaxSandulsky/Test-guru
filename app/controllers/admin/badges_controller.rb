@@ -1,7 +1,7 @@
 class Admin::BadgesController < Admin::BaseController
   def index
-    @badges = current_user.unachieved_badges
-    @achieved_badges = current_user.achieved_badges
+    @user_badges = current_user.badges
+    @badges = Badge.all
   end
 
   def new
@@ -9,20 +9,14 @@ class Admin::BadgesController < Admin::BaseController
   end
 
   def create
-    ActiveRecord::Base.transaction do
-      User.all.each do |user|
-        @badge = user.badges.build(badge_params)
-        @badge.save!
-      end
-    end
-    redirect_to admin_badges_path
-  rescue ActiveRecord::RecordInvalid
-    render :new
+    @badge = Badge.new(badge_params)
+    byebug
+    @badge.save! ? (redirect_to admin_badges_path) : (render :new)
   end
 
   private
 
   def badge_params
-    params.require(:badge).permit(:title, :level, :category_id, :test_id, :attempts, :pic_url)
+    params.require(:badge).permit(:title, :description, :rule, :rule_value, :pic_url)
   end
 end

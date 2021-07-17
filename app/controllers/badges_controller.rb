@@ -2,21 +2,13 @@ class BadgesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @badges = current_user.unachieved_badges
-    @achieved_badges = current_user.achieved_badges
+    @user_badges = current_user.badges
+    @badges = Badge.all
   end
 
-  def achieve(test_passage)
-    test_passage.user.unachieved_badges.each do |badge|
-      next unless (badge.completed_by(test_passage.user) & badge.required_tests).size == badge.required_tests.size && check_user_attempts(
-        badge, test_passage
-      )
-
-      badge.attempts_by(test_passage.user).each(&:destroy)
-      next_badge = badge.dup
-      next_badge.save!
-      badge.achieved = true
-      badge.save!
+  def achieve(current_user)
+    Badge.find_each do |badge|
+      current_user.badges << badge if badge.achieved(current_user)
     end
   end
 

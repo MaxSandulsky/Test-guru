@@ -6,7 +6,7 @@ class TestPassagesController < ApplicationController
 
   def result
     badges_controller = BadgesController.new
-    badges_controller.achieve(@test_passage)
+    badges_controller.achieve(current_user)
   end
 
   def update

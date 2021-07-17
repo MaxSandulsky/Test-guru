@@ -6,23 +6,18 @@
     </p><br>
 
     <p>
-      <%= form.label t('.level') %>
-      <%= form.number_field :level %>
+      <%= form.label t('.description') %>
+      <%= form.text_field :description %>
     </p><br>
 
     <p>
-      <%= form.label t('.category') %>
-      <%= form.collection_select :category_id, Category.all, :id, :title, prompt: true %>
+      <%= form.label t('.rule') %>
+      <%= form.collection_select :rule, Badge::RULES, :to_s, :to_s, prompt: true %>
     </p><br>
 
     <p>
-      <%= form.label t('.test') %>
-      <%= form.collection_select :test_id, Test.all, :id, :title, prompt: true %>
-    </p><br>
-
-    <p>
-      <%= form.label t('.attempts') %>
-      <%= form.number_field :attempts %>
+      <%= form.label t('.rule_value') %>
+      <%= form.text_field :rule_value %>
     </p><br>
 
     <p>

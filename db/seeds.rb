@@ -59,15 +59,6 @@ Answer.create!([{ question: questions[0], body: 'function' },
 
 TestPassage.create!(user: users[0], test: tests[0], current_question: questions[0])
 
-badges_rules = BadgesRule.create!([{ test: tests[0],
-                                     title: 'Junior',
-                                     pic_url: 'https://starwarsblog.starwars.com/wp-content/uploads/2012/08/Padawans-1088x816-570401936629.jpg' },
-                                   { title: 'Wise Guru',
-                                     attempts: 1,
-                                     level: 2,
-                                     pic_url: 'https://ichef.bbci.co.uk/news/1024/media/images/80449000/jpg/_80449240_wirathu.jpg' }])
-
-Badge.create!(user: users[0],
-              title: 'Junior',
-              badges_rule: badges_rules[0],
-              pic_url: 'https://starwarsblog.starwars.com/wp-content/uploads/2012/08/Padawans-1088x816-570401936629.jpg')
+badges = Badge.create!(title: 'Backend developer', description: 'Passed all Backend tests',
+                       rule: 'tests_by_category', rule_value: 'Backend',
+                       pic_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdn_G1p0WjnmLpGuWWiL-w_87COmb8wOb6PQ&usqp=CAU')

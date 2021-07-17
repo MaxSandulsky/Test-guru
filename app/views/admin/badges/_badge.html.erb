@@ -3,18 +3,7 @@
     <div class="badge" data-background="<%= badge.pic_url %>">
       <div class="badge-text">
         <%= content_tag :li, badge.title, class: "badge-title" %>
-        <% if badge.level %>
-          <li class="badge-conditions"><%= t('.level') %>: <%= badge.level %></li>
-        <% end %>
-        <% if badge.category %>
-          <li class="badge-conditions"><%= t('.category') %>: <%= badge.category.title %></li>
-        <% end %>
-        <% if badge.attempts %>
-          <li class="badge-conditions"><%= t('.attempts') %>: <%= badge.attempts %></li>
-        <% end %>
-        <% if badge.test %>
-          <li class="badge-conditions"><%= t('.test') %>: <%= badge.test.title %></li>
-        <% end %>
+        <%= content_tag :li, badge.description, class: "badge-conditions" %>
       </div>
     </div>
   </ul>
