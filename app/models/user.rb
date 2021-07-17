@@ -13,10 +13,6 @@ class User < ApplicationRecord
   has_many :user_badges, dependent: :destroy
   has_many :badges, through: :user_badges
 
-  def active_tests(level)
-    tests_passed.by_level(level)
-  end
-
   def uncomplete_test_passage(test)
     test_passages.by_uncomplete.find_or_create_by(test_id: test.id)
   end

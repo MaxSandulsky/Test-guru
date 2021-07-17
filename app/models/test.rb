@@ -14,7 +14,6 @@ class Test < ApplicationRecord
   scope :by_normal, -> { by_level(2..4) }
   scope :by_hard, -> { by_level(5..) }
   scope :by_category, ->(category) { joins(:category).where(categories: { title: category }) }
-  scope :passed_by, ->(user) { joins(:test_passages).where(test_passages: { user: user }) }
 
   def self.titles(category)
     by_category(category).pluck(:title)
