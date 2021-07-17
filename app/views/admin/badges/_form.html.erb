@@ -1,0 +1,35 @@
+<%= form_with model: [:admin, @badge], local: true do |form| %>
+  <div>
+    <p>
+      <%= form.label t('.title') %>
+      <%= form.text_field :title %>
+    </p><br>
+
+    <p>
+      <%= form.label t('.level') %>
+      <%= form.number_field :level %>
+    </p><br>
+
+    <p>
+      <%= form.label t('.category') %>
+      <%= form.collection_select :category_id, Category.all, :id, :title, prompt: true %>
+    </p><br>
+
+    <p>
+      <%= form.label t('.test') %>
+      <%= form.collection_select :test_id, Test.all, :id, :title, prompt: true %>
+    </p><br>
+
+    <p>
+      <%= form.label t('.attempts') %>
+      <%= form.number_field :attempts %>
+    </p><br>
+
+    <p>
+      <%= form.label t('.pic_url')%>
+      <%= form.text_field :pic_url %>
+    </p>
+  </div>
+
+  <p><%= form.submit %></p>
+<% end %>
