@@ -11,8 +11,4 @@ class BadgesController < ApplicationController
       current_user.badges << badge if badge.achieved(current_user)
     end
   end
-
-  def check_user_attempts(badge, test_passage)
-    badge.attempts.nil? ? true : (badge.attempts * badge.required_tests.count >= badge.completed_by(test_passage.user).count)
-  end
 end
