@@ -9,6 +9,8 @@ class TestPassage < ApplicationRecord
   before_update :before_update_set_next_question
 
   scope :by_uncomplete, -> { where.not(current_question: nil).order(id: :desc) }
+  scope :by_user, ->(user) { where(user: user) }
+  scope :not_expired, -> { where(expired: false) }
 
   def completed?
     current_question.nil?
@@ -39,7 +41,10 @@ class TestPassage < ApplicationRecord
   end
 
   def before_update_set_next_question
-    self.current_question = test.questions.order(:id).where('id > ?', current_question.id).first
+    unless current_question.nil?
+      self.current_question = test.questions.order(:id).where('id > ?',
+                                                              current_question.id).first
+    end
   end
 
   def correct_answer?(answer_ids)
