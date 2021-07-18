@@ -22,6 +22,7 @@ class User < ApplicationRecord
   end
 
   def tests_passed_times(value)
-    tests_passed_succesful.select { |test| tests_passed_succesful.to_a.count(test) >= value }.uniq
+    tests = tests_passed_succesful
+    tests.select { |test| tests.to_a.count(test) >= value }.uniq
   end
 end
