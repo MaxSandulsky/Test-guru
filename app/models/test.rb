@@ -13,7 +13,7 @@ class Test < ApplicationRecord
   scope :by_easy, -> { by_level(0..1) }
   scope :by_normal, -> { by_level(2..4) }
   scope :by_hard, -> { by_level(5..) }
-  scope :by_category, ->(category) { joins(:category).where(categories: { title: category }) }
+  scope :by_category, ->(category) { where(category: category) }
 
   def self.titles(category)
     by_category(category).pluck(:title)

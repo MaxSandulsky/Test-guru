@@ -1,5 +1,7 @@
 class Badge < ApplicationRecord
-  RULES = %i[tests_by_category tests_by_level test_by_first_attempt].freeze
+  RULES = { tests_by_category: Specifications::Badges::TestsByCategory,
+            tests_by_level: Specifications::Badges::TestsByLevel,
+            test_by_first_attempt: Specifications::Badges::TestsByFirstAttempt}
 
   validates :title,
             :pic_url,
@@ -7,19 +9,11 @@ class Badge < ApplicationRecord
             :rule,
             presence: true
 
-  def achieved(user)
-    BadgesRules.send rule.to_sym, rule_value, user
-  end
-
-  def related_tests
-    user = User.new
-    Test.find_each do |test|
-      user.test_passages.build(test: test)
-    end
+  def related_test_passages(user)
     user.test_passages.each do |tp|
       user.test_passages.delete(tp)
       user.test_passages.build(test: tp.test) unless achieved(user)
     end
-    user.test_passages.map(&:test)
+    user.test_passages
   end
 end

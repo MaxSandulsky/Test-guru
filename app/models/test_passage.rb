@@ -9,7 +9,6 @@ class TestPassage < ApplicationRecord
   before_update :before_update_set_next_question
 
   scope :by_uncomplete, -> { where.not(current_question: nil).order(id: :desc) }
-  scope :by_user, ->(user) { where(user: user) }
   scope :not_expired, -> { where(expired: false) }
 
   def completed?

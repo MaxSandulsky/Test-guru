@@ -60,5 +60,5 @@ Answer.create!([{ question: questions[0], body: 'function' },
 TestPassage.create!(user: users[0], test: tests[0], current_question: questions[0])
 
 badges = Badge.create!(title: 'Backend developer', description: 'Passed all Backend tests',
-                       rule: 'tests_by_category', rule_value: 'Backend',
+                       rule: 'tests_by_category', rule_value: categories[0],
                        pic_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdn_G1p0WjnmLpGuWWiL-w_87COmb8wOb6PQ&usqp=CAU')
