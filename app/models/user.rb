@@ -16,4 +16,8 @@ class User < ApplicationRecord
   def uncomplete_test_passage(test)
     test_passages.by_uncomplete.find_or_create_by(test_id: test.id)
   end
+
+  def tests_passed
+    test_passages.not_expired.map { |tp| tp.test }
+  end
 end
