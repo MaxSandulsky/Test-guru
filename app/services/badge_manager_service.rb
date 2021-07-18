@@ -1,6 +1,6 @@
 class BadgeManagerService
   def self.call(current_user)
-    manager = self.new
+    manager = new
     manager.achieve(current_user)
   end
 
