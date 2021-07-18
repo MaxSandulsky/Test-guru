@@ -6,7 +6,7 @@ users = User.create!([{ password: 'doAos11-', email: 'sample@mailer.com' },
 
 tests = Test.create!([{ category: categories[0], author: users[0], title: 'Ruby for beginners' },
                       { category: categories[1], author: users[0], title: 'HTML for the little ones' },
-                      { category: categories[0], author: users[1], title: 'Advanced Rails', level: 1 }])
+                      { category: categories[0], author: users[1], title: 'Advanced Rails', level: 2 }])
 
 questions = Question.create!([{ test: tests[0], body: 'In Ruby, everything is ...' },
                               { test: tests[0], body: 'What function do you need to print output to the screen?' },
@@ -58,3 +58,7 @@ Answer.create!([{ question: questions[0], body: 'function' },
                 { question: questions[10], body: 'Fragments of HTML code', correct: true }])
 
 TestPassage.create!(user: users[0], test: tests[0], current_question: questions[0])
+
+badges = Badge.create!(title: 'Backend developer', description: 'Passed all Backend tests',
+                       rule: 'tests_by_category', rule_value: categories[0],
+                       pic_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdn_G1p0WjnmLpGuWWiL-w_87COmb8wOb6PQ&usqp=CAU')

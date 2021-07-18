@@ -53,14 +53,8 @@ ru:
 
   badges:
     index:
+      available: "Доступные для получения"
       header: "Ваши бэйджи"
-
-  badges_rules:
-    badges_rule:
-      level: "Уровни тестов"
-      category: "в категории"
-      attempts: "количество попыток"
-      test: "за прохождение теста"
 
   admin:
     menu:
@@ -113,20 +107,25 @@ ru:
         body: "Текст ответа"
         correct: "Правильный ответ"
         create: "Сохранить ответ"
-    badges_rules:
+    badges:
       index:
-        header: "Возможные бэйджи"
+        header: "Ваши бэйджи"
         new: "Создать новый бэйдж"
+        available: "Доступные для получения"
       new:
         header: "Создание нового бэйджа"
         description: "Выберите одно или несколько условий получения бэйджа"
       form:
         title: "Бэйдж"
-        level: "Уровень тестов"
-        category: "Категория тестов"
-        test: "Тест"
-        attempts: "Максимальное количество попыток"
+        description: "Описание"
+        rule: "Условие получения"
+        rule_value: "Значение"
         pic_url: "Ссылка на фоновое изображение"
+      badge:
+        level: "Уровни тестов"
+        category: "в категории"
+        attempts: "количество попыток"
+        test: "за прохождение теста"
 
   tests_mailer:
     completed_test:
