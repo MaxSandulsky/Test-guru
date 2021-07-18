@@ -12,7 +12,7 @@
 
     <p>
       <%= form.label t('.rule') %>
-      <%= form.collection_select :rule, Badge::RULES, :to_s, :to_s, prompt: true %>
+      <%= form.collection_select :rule, Badge::RULES, :first, :first, prompt: true %>
     </p><br>
 
     <p>

@@ -1,14 +1,13 @@
 class BadgeManagerService
-  def self.call(test_passage)
+  def self.call(current_user)
     manager = self.new
-    manager.achieve
+    manager.achieve(current_user)
   end
 
-  def achieve
+  def achieve(current_user)
     Badge.find_each do |badge|
-      if Badge::RULES[badge.rule].satisfied?(badge.rule_value, user)
+      if Badge::RULES[badge.rule.to_sym].satisfied?(badge.rule_value, current_user)
         current_user.badges << badge
-        badge.related_test_passages(current_user).each { |tp| tp.not_expired.update(expired: true) }
       end
     end
   end

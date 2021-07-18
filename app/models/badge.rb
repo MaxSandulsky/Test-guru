@@ -8,12 +8,4 @@ class Badge < ApplicationRecord
             :description,
             :rule,
             presence: true
-
-  def related_test_passages(user)
-    user.test_passages.each do |tp|
-      user.test_passages.delete(tp)
-      user.test_passages.build(test: tp.test) unless achieved(user)
-    end
-    user.test_passages
-  end
 end
