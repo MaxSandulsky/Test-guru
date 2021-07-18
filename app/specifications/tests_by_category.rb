@@ -1,5 +1,5 @@
 class TestsByCategory
-  def self.satisfied?(value, user)
-    (user.tests_passed & Test.by_category(value)).size == Test.by_category(value).size
+  def self.satisfied?(value, user, magnitude)
+    (user.tests_passed_times(magnitude) & Test.by_category(value)).size == Test.by_category(value).size
   end
 end
