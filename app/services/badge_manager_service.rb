@@ -1,18 +1,19 @@
 class BadgeManagerService
-  def self.call(current_user)
-    manager = new
-    manager.achieve(current_user)
+  def initialize(test_passage)
+    @test_passage = test_passage
+    @test = test_passage.test
+    @user = test_passage.user
   end
 
-  def achieve(current_user)
+  def call
     Badge.find_each do |badge|
-      if Badge::RULES[badge.rule.to_sym].satisfied?(badge.rule_value, current_user, magnitude(badge, current_user))
-        current_user.badges << badge
+      if Badge::RULES[badge.rule.to_sym].satisfied?(badge.rule_value, @user, magnitude(badge))
+        @user.badges << badge
       end
     end
   end
 
-  def magnitude(badge, user)
-    user.user_badges.where(badge: badge).count
+  def magnitude(badge)
+    @user.user_badges.where(badge: badge).count
   end
 end

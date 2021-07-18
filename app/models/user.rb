@@ -17,7 +17,11 @@ class User < ApplicationRecord
     test_passages.by_uncomplete.find_or_create_by(test_id: test.id)
   end
 
+  def tests_passed_succesful
+    test_passages.success.map(&:test)
+  end
+
   def tests_passed_times(value)
-    tests_passed.select { |test| tests_passed.to_a.count(test) >= value }.uniq
+    tests_passed_succesful.select { |test| tests_passed.to_a.count(test) >= value }.uniq
   end
 end
