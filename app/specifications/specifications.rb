@@ -1,4 +1,4 @@
-class Specifications
+module Specifications
   module Badges
     TestsByCategory = ::TestsByCategory
     TestsByLevel = ::TestsByLevel

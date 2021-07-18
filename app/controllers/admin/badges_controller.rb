@@ -10,7 +10,11 @@ class Admin::BadgesController < Admin::BaseController
 
   def create
     @badge = Badge.new(badge_params)
-    @badge.save! ? (redirect_to admin_badges_path) : (render :new)
+    if @badge.save
+      redirect_to admin_badges_path
+    else
+      render :new
+    end
   end
 
   private
