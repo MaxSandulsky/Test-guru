@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20_210_717_051_331) do
     t.bigint 'test_id', null: false
     t.bigint 'current_question_id'
     t.integer 'correct_questions', default: 0
-    t.boolean 'expired', default: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index ['current_question_id'], name: 'index_test_passages_on_current_question_id'
@@ -77,6 +76,7 @@ ActiveRecord::Schema.define(version: 20_210_717_051_331) do
     t.string 'title', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.integer 'timer', default: 0
     t.index ['author_id'], name: 'index_tests_on_author_id'
     t.index ['category_id'], name: 'index_tests_on_category_id'
   end

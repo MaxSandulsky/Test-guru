@@ -43,6 +43,8 @@ ru:
       actions: "Действия"
 
   test_passages:
+    show:
+      header: "Вы проходите тест"
     result:
       header: "Вы прошли тест %{title}!"
 

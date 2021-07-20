@@ -3,7 +3,8 @@ import {enable_inputCompare_for,
         enable_formInline_for,
         enable_progressBar_for,
         enable_retractable_for,
-        enable_images_for} from 'event_helpers/event_module'
+        enable_images_for,
+        enable_timeLimit_for} from 'event_helpers/event_module'
 import "utilities/password_match"
 
 document.addEventListener('turbolinks:load', () => {
@@ -13,4 +14,5 @@ document.addEventListener('turbolinks:load', () => {
   enable_progressBar_for('.progress-bar')
   enable_retractable_for('.user', '.menu')
   enable_images_for('.badge')
+  enable_timeLimit_for('.timer')
 })

@@ -1,4 +1,4 @@
-<h1>Passing the <%= @test_passage.test.title %> Test</h1>
+<h1><%= "#{t('.header')} #{@test_passage.test.title}" %></h1>
 
 <p>
   <% 50.times do |i|%>
@@ -7,10 +7,15 @@
 </p>
 
 <p>
+  <%= timer %>
+</p>
+
+<p>
   <b><%= @test_passage.current_question.body %></b>
 </p>
 
 <%= form_with url: test_passage_path(@test_passage),
+              class: 'test-passage',
               local: true,
               method: :put do |form| %>
 
