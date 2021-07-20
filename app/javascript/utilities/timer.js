@@ -17,9 +17,11 @@ export class Timer {
 
   clock_tick() {
     this.time_left = this.time_left - 1000
-    const time = [Math.floor(this.time_left / 3600000),
-                  Math.floor(this.time_left / 60000),
-                  Math.floor(this.time_left / 1000)]
+    console.log(this.time_left);
+    const time = []
+    time[0] = Math.floor(this.time_left / 3600000)
+    time[1] = Math.floor(this.time_left / 60000) - time[0]*60
+    time[2] = Math.floor(this.time_left / 1000) - (time[1]*60 + time[0]*3600)
     time.forEach((item, i) => {
       if (item < 10) {
         time[i] = "0" + item
@@ -31,4 +33,5 @@ export class Timer {
 
   expire_by_end_of_time() {
     document.querySelector('.test-passage').submit()
+  }
 }
